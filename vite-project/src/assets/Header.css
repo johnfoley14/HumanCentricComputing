@@ -1,0 +1,16 @@
+ul {
+    display: flex;
+    justify-content: space-evenly;
+    list-style-type: none;
+    padding: 0;
+    background-color: aqua;
+}
+
+ul li {
+    padding: 10px;
+    transition: background-color 0.3s ease;
+}
+
+ul li:hover {
+    background-color: lightgray;
+}
