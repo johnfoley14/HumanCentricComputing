@@ -1,16 +1,36 @@
-ul {
-    display: flex;
-    justify-content: space-evenly;
-    list-style-type: none;
+body, html {
+    margin: 0;
     padding: 0;
-    background-color: aqua;
+}
+  
+#header_nav {
+    background-color: rgb(0, 175, 117);
+    width: 100%;
+    padding: 0px;
+}
+  
+#header_nav ul {
+    margin: 0;
+    text-align: center;
+    justify-content: space-evenly;
+}
+  
+.pages_list {
+    list-style-type: none;
+    overflow: hidden;
+    display: flex; /* Use flexbox for centering */
+    height: 100%; /* Ensure the height takes the full viewport height */
+}
+  
+.pages_list a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 28px 46px;
+    text-decoration: none;
+}
+  
+.pages_list a:hover {
+    background-color: rgb(104, 198, 125);
 }
 
-ul li {
-    padding: 10px;
-    transition: background-color 0.3s ease;
-}
-
-ul li:hover {
-    background-color: lightgray;
-}
