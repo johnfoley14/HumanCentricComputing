@@ -1,20 +1,22 @@
-import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import { BrowserRouter, Routes, Route} from 'react-router-dom';
 import Submission from './pages/Submission';
 import Header from './assets/Header';
+import Home from './pages/Home';
 
 function App() {
   return (
-    <Router>
+    <BrowserRouter>
       <Routes>
         <Route path="/Home" element={<Header/>} >
-          <Route index element={<h1>hello</h1>} /> {/* Add a route for the Login component */}
-          <Route path="signup" element={<h1>hello</h1>} /> {/* Add a route for the Signup component */}
-          <Route path="submission" element={<Submission />} />
-          <Route path="project" element={<p>Hello</p>} />
+          <Route index element={<Home />} />
+          <Route path="signup" element={<Submission />} />
+          <Route path="project" element={<Submission />} />
         </Route>
       </Routes>
-    </Router>
+      <p>This is the footer here</p>
+    </BrowserRouter>
   );
 }
 
 export default App;
+
