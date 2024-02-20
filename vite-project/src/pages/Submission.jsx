@@ -1,4 +1,8 @@
+import NotAuthorised from "../assets/NotAuthorised";
+import { isLoggedIn} from "../App";
+
 const Submission = () => {
+    if (isLoggedIn) {
     return (
         <div>
             <h1>Project Submission</h1>
@@ -7,6 +11,8 @@ const Submission = () => {
             </p>
         </div>
     );
+    }
+    return <NotAuthorised />;
 };
 
 export default Submission;

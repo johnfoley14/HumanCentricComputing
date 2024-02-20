@@ -1,4 +1,8 @@
 import { useState } from 'react';
+import { setTrue } from '../App';
+import './UserForm.css';
+
+
 
 const UserForm = () => {
   const [formData, setFormData] = useState({
@@ -21,12 +25,13 @@ const UserForm = () => {
 
     // For demonstration purposes, log the form data to the console
     console.log(formData);
+    setTrue();
   };
 
   return (
-    <div>
+    <div className='centered-container-user-form'>
       <h2>User Information Form</h2>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className='centered-container-user-form'>
         <label htmlFor="name">Name:</label>
         <input
           type="text"
@@ -58,6 +63,8 @@ const UserForm = () => {
         />
 
         {/* Add more fields as needed */}
+
+        <br/>
 
         <button type="submit">Submit</button>
       </form>
