@@ -1,9 +1,9 @@
 import { Outlet, Link } from 'react-router-dom';
 import './Header.css';
 import  { useState } from "react";
+import PropTypes from 'prop-types';
 
-
-const Header = () => {
+const Header = ({ isLoggedIn }) => {
 
   const [showSubMenu, setShowSubMenu] = useState(false);
 
@@ -20,9 +20,11 @@ const Header = () => {
             <li>
               <Link to="">Home</Link>
             </li>
-            <li>
-              <Link to="signup">Login</Link>
-            </li>
+            {!isLoggedIn 
+              ? <li> <Link to="login">Login</Link> </li>
+              : <li> <Link to="logout">Logout</Link> </li>
+            }
+            
             <li>
               <Link to="project">Project</Link>
             </li>
@@ -32,5 +34,9 @@ const Header = () => {
       </div>
     )
 }
+
+Header.propTypes = {
+  isLoggedIn: PropTypes.bool.isRequired,
+};
 
 export default Header;

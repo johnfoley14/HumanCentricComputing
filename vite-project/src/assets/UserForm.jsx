@@ -1,10 +1,14 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 import './UserForm.css';
+import { useNavigate } from 'react-router-dom';
 
 
 
 const UserForm = ({handleLogin}) => {
+
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     name: '',
     age: '',
@@ -25,6 +29,7 @@ const UserForm = ({handleLogin}) => {
 
     // For demonstration purposes, log the form data to the console
     handleLogin();
+    navigate('/');
     console.log(formData);
   };
 
@@ -61,8 +66,6 @@ const UserForm = ({handleLogin}) => {
           onChange={handleChange}
           required
         />
-
-        {/* Add more fields as needed */}
 
         <br/>
 

@@ -2,7 +2,7 @@ import UserForm from "../assets/UserForm";
 
 import PropTypes from 'prop-types';
 
-const SignUpPage = ({ handleLogin, isLoggedIn }) => {
+const LoginPage = ({ handleLogin, isLoggedIn }) => {
     if (isLoggedIn) {
         return (
             <div>
@@ -17,9 +17,9 @@ const SignUpPage = ({ handleLogin, isLoggedIn }) => {
     );
 };
 
-SignUpPage.propTypes = {
+LoginPage.propTypes = {
     handleLogin: PropTypes.func.isRequired,
     isLoggedIn: PropTypes.bool.isRequired,
 };
 
-export default SignUpPage;
+export default LoginPage;
