@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import { setTrue } from '../App';
+import PropTypes from 'prop-types';
 import './UserForm.css';
 
 
 
-const UserForm = () => {
+const UserForm = ({handleLogin}) => {
   const [formData, setFormData] = useState({
     name: '',
     age: '',
@@ -24,8 +24,8 @@ const UserForm = () => {
     // Add your form submission logic here, such as sending data to a server
 
     // For demonstration purposes, log the form data to the console
+    handleLogin();
     console.log(formData);
-    setTrue();
   };
 
   return (
@@ -70,6 +70,11 @@ const UserForm = () => {
       </form>
     </div>
   );
+};
+
+
+UserForm.propTypes = {
+  handleLogin: PropTypes.func.isRequired,
 };
 
 export default UserForm;

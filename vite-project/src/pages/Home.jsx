@@ -1,7 +1,7 @@
+import PropTypes from 'prop-types';
 import NotAuthorised from "../assets/NotAuthorised";
-import { isLoggedIn} from "../App";
 
-const Home = () => {
+const Home = ({isLoggedIn}) => {
     if (isLoggedIn) {
     return (
       <div>
@@ -11,5 +11,9 @@ const Home = () => {
     }
     return <NotAuthorised />;
   };
-  
-  export default Home;
+
+Home.propTypes = {
+  isLoggedIn: PropTypes.bool.isRequired,
+};
+
+export default Home;

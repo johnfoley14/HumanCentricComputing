@@ -1,7 +1,8 @@
 import NotAuthorised from "../assets/NotAuthorised";
-import { isLoggedIn} from "../App";
+import PropTypes from 'prop-types';
 
-const Submission = () => {
+
+const Submission = ({isLoggedIn}) => {
     if (isLoggedIn) {
     return (
         <div>
@@ -14,5 +15,9 @@ const Submission = () => {
     }
     return <NotAuthorised />;
 };
+
+Submission.propTypes = {
+    isLoggedIn: PropTypes.bool.isRequired,
+  };
 
 export default Submission;

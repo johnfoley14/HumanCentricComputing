@@ -3,29 +3,26 @@ import Submission from './pages/Submission';
 import Header from './assets/Header';
 import Home from './pages/Home';
 import SignUp from './pages/SignUp';
-
-let isLoggedIn = false;
-
-export function setTrue() {
-  isLoggedIn = true;
-}
-
-export function setFalse() {
-  isLoggedIn = false;
-}
-
-export { isLoggedIn };
+import { useState } from 'react';
 
 
 function App() {
+  
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const handleLogin = () => {
+    setIsLoggedIn(true);
+  };
+
+
+
   return (
     <BrowserRouter>
+      <Header/>
       <Routes>
-        <Route path="/Home" element={<Header/>} >
-          <Route index element={<Home />} />
-          <Route path="signup" element={<SignUp />} />
-          <Route path="project" element={<Submission />} />
-        </Route>
+        <Route index element={<Home isLoggedIn={isLoggedIn}/>} />
+        <Route path="signup" element={<SignUp handleLogin={handleLogin} isLoggedIn={isLoggedIn}/>} />
+        <Route path="project" element={<Submission isLoggedIn={isLoggedIn}/>} />
       </Routes>
       <p>This is the footer here</p>
     </BrowserRouter>
