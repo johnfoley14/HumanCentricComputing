@@ -1,25 +1,18 @@
 import UserForm from "../assets/UserForm";
-
 import PropTypes from 'prop-types';
 
-const LoginPage = ({ handleLogin, isLoggedIn }) => {
-    if (isLoggedIn) {
-        return (
-            <div>
-                <h1>Welcome to My Epic</h1>
-            </div>
-        );
-    }
+const LoginPage = ({ handleLogin , showToast }) => {
+
     return (
         <div>
-            <UserForm handleLogin={handleLogin} />
+            <UserForm handleLogin={handleLogin} showToast={showToast} />
         </div>
     );
 };
 
 LoginPage.propTypes = {
     handleLogin: PropTypes.func.isRequired,
-    isLoggedIn: PropTypes.bool.isRequired,
+    showToast: PropTypes.func.isRequired,
 };
 
 export default LoginPage;

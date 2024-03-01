@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 
 
-const UserForm = ({handleLogin}) => {
+const UserForm = ({ handleLogin , showToast }) => {
 
   const navigate = useNavigate();
 
@@ -13,7 +13,6 @@ const UserForm = ({handleLogin}) => {
     name: '',
     age: '',
     dob: '',
-    // Add more fields as needed
   });
 
   const handleChange = (e) => {
@@ -25,11 +24,11 @@ const UserForm = ({handleLogin}) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Add your form submission logic here, such as sending data to a server
 
     // For demonstration purposes, log the form data to the console
     handleLogin();
-    navigate('/');
+    showToast();
+    navigate('/logout');
     console.log(formData);
   };
 
@@ -78,6 +77,7 @@ const UserForm = ({handleLogin}) => {
 
 UserForm.propTypes = {
   handleLogin: PropTypes.func.isRequired,
+  showToast: PropTypes.func.isRequired,
 };
 
 export default UserForm;
