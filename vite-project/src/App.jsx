@@ -6,6 +6,7 @@ import Login from './pages/Login';
 import Logout from './pages/Logout';
 import { useState } from 'react';
 import { ToastNotification } from '@carbon/react';
+import Footer from './assets/Footer'; 
 // eslint-disable-next-line no-unused-vars
 import './styling/ToastNotification.css'
 
@@ -34,10 +35,9 @@ function App() {
 
 
   return (
-    <div>
+    <div style={{width:'100%', height:'100%'}}>
     <BrowserRouter>
       <Header isLoggedIn={isLoggedIn}/>
-      <main>
       {successToastOpen && (
               <ToastNotification
                 className='notification'
@@ -52,8 +52,7 @@ function App() {
           <Route path="logout" element={<Logout handleLogout={handleLogout} successToastOpen={successToastOpen}/>} />
           <Route path="project" element={<Submission isLoggedIn={isLoggedIn} successToastOpen={successToastOpen}/>} />
         </Routes>
-      </main>
-      <p>This is the footer here</p>
+      <Footer />
     </BrowserRouter>
     </div>
   );

@@ -1,31 +1,27 @@
 import { Outlet, Link } from 'react-router-dom';
-import './Header.css';
-import  { useState } from "react";
+import '../styling/Header.css';
 import PropTypes from 'prop-types';
+import logo from '../images/SmartReelGreenLogo.jpeg';
+
 
 const Header = ({ isLoggedIn }) => {
-
-  const [showSubMenu, setShowSubMenu] = useState(false);
-
-  const handleSubMenuToggle = () => {
-    setShowSubMenu(!showSubMenu);
-  };
 
     return (
       <div>
         <nav id='header_nav'>
           <ul className='pages_list'>
-            <li onMouseEnter={handleSubMenuToggle} onMouseLeave={handleSubMenuToggle}>
+            <li className='logo'>
+              <img src={logo} alt="Logo" style={{ width: '78px', height: '78px', position: 'absolute', top: '0px', left: '0px'}} />
             </li>
-            <li>
+            <li style={{ width: '78px', height: '78px'}}>
               <Link to="">Home</Link>
             </li>
-            <li>
+            <li style={{ width: '78px', height: '78px'}}>
               <Link to="project">Project</Link>
             </li>
             {!isLoggedIn 
-              ? <li> <Link to="login">Login</Link> </li>
-              : <li> <Link to="logout">Logout</Link> </li>
+              ? <li style={{ width: '78px', height: '78px'}}> <Link to="login">Login</Link> </li>
+              : <li style={{ width: '78px', height: '78px'}}> <Link to="logout">Logout</Link> </li>
             }
           </ul>
         </nav>
