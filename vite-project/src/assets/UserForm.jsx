@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
-import './UserForm.css';
+import '../styling/UserForm.css';
 import { useNavigate } from 'react-router-dom';
 
 
 
-const UserForm = ({ handleLogin , showToast }) => {
+const UserForm = ({ handleLogin }) => {
 
   const navigate = useNavigate();
 
@@ -27,7 +27,6 @@ const UserForm = ({ handleLogin , showToast }) => {
 
     // For demonstration purposes, log the form data to the console
     handleLogin();
-    showToast();
     navigate('/logout');
     console.log(formData);
   };
@@ -77,7 +76,6 @@ const UserForm = ({ handleLogin , showToast }) => {
 
 UserForm.propTypes = {
   handleLogin: PropTypes.func.isRequired,
-  showToast: PropTypes.func.isRequired,
 };
 
 export default UserForm;

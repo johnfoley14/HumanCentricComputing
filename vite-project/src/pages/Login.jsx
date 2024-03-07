@@ -1,18 +1,17 @@
 import UserForm from "../assets/UserForm";
 import PropTypes from 'prop-types';
 
-const LoginPage = ({ handleLogin , showToast }) => {
+const LoginPage = ({ handleLogin}) => {
 
     return (
         <div>
-            <UserForm handleLogin={handleLogin} showToast={showToast} />
+            <UserForm handleLogin={handleLogin}/>
         </div>
     );
 };
 
 LoginPage.propTypes = {
     handleLogin: PropTypes.func.isRequired,
-    showToast: PropTypes.func.isRequired,
 };
 
 export default LoginPage;

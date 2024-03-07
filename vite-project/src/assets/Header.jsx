@@ -17,7 +17,10 @@ const Header = ({ isLoggedIn }) => {
               <Link to="">Home</Link>
             </li>
             <li style={{ width: '78px', height: '78px'}}>
-              <Link to="project">Project</Link>
+              <Link to="project">Epic</Link>
+            </li>
+            <li style={{ width: '78px', height: '78px'}}>
+              <Link to="salim">Salim GUI</Link>
             </li>
             {!isLoggedIn 
               ? <li style={{ width: '78px', height: '78px'}}> <Link to="login">Login</Link> </li>

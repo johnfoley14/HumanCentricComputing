@@ -4,6 +4,7 @@ import Header from './assets/Header';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Logout from './pages/Logout';
+import GuiComponents from './pages/GuiComponents';
 import { useState } from 'react';
 import { ToastNotification } from '@carbon/react';
 import Footer from './assets/Footer'; 
@@ -18,6 +19,7 @@ function App() {
 
   const handleLogin = () => {
     setIsLoggedIn(true);
+    showToast();
   };
 
   const handleLogout = () => {
@@ -47,10 +49,11 @@ function App() {
               />
             )} 
         <Routes>
-          <Route index element={<Home isLoggedIn={isLoggedIn} successToastOpen={successToastOpen}/>} />
-          <Route path="login" element={<Login handleLogin={handleLogin} showToast={showToast}/>} />
-          <Route path="logout" element={<Logout handleLogout={handleLogout} successToastOpen={successToastOpen}/>} />
-          <Route path="project" element={<Submission isLoggedIn={isLoggedIn} successToastOpen={successToastOpen}/>} />
+          <Route index element={<Home isLoggedIn={isLoggedIn}/>} />
+          <Route path="login" element={<Login handleLogin={handleLogin}/>} />
+          <Route path="logout" element={<Logout handleLogout={handleLogout}/>} />
+          <Route path="project" element={<Submission isLoggedIn={isLoggedIn}/>} />
+          <Route path="salim" element={<GuiComponents isLoggedIn={isLoggedIn}/>} />
         </Routes>
       <Footer />
     </BrowserRouter>
