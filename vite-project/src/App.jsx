@@ -8,8 +8,9 @@ import GuiComponents from './pages/GuiComponents';
 import { useState } from 'react';
 import { ToastNotification } from '@carbon/react';
 import Footer from './assets/Footer'; 
-// eslint-disable-next-line no-unused-vars
-import './styling/ToastNotification.css'
+// // eslint-disable-next-line no-unused-vars
+import './styling/toastNotification.css'
+import '@carbon/react/scss/components/notification/_index.scss';
 
 
 function App() {
@@ -37,12 +38,19 @@ function App() {
 
   const [users, setUsers] = useState([]);
 
-    const getUsers = () => {
-        return users;
-    }
+  const getUsers = () => {
+    return users;
+  }
+
+  
+  const [assignments, setAssignments] = useState([]);
+
+  const getAssignments = () => {
+    return assignments;
+  }
 
   return (
-    <div style={{width:'100%', height:'100%'}}>
+    <div style={{position:'relative'}}>
     <BrowserRouter>
       <Header isLoggedIn={isLoggedIn}/>
       {successToastOpen && (
@@ -58,7 +66,7 @@ function App() {
           <Route path="login" element={<Login handleLogin={handleLogin} getUsers={getUsers} setUsers={setUsers}/>} />
           <Route path="logout" element={<Logout handleLogout={handleLogout}/>} />
           <Route path="project" element={<Submission isLoggedIn={isLoggedIn}/>} />
-          <Route path="salim" element={<GuiComponents isLoggedIn={isLoggedIn}/>} />
+          <Route path="salim" element={<GuiComponents isLoggedIn={isLoggedIn} getUsers={getUsers} setAssignments={setAssignments} getAssignments={getAssignments}/>} />
         </Routes>
       <Footer />
     </BrowserRouter>

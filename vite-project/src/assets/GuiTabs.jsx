@@ -1,15 +1,17 @@
 import { Tabs, TabList, Tab, TabPanels, TabPanel } from 'carbon-components-react';
 import { Dashboard, Activity, CloudMonitoring,  Search,  Chat, } from '@carbon/icons-react';
 import FileUploadForm from './Gui/FileUpload';
+import ContentManagementSystem from './Gui/CMS';
+import PropTypes from 'prop-types';
 import '@carbon/react/scss/components/tabs/_index.scss';
 
-const ContainedWithSecondaryLabelsAndIcons = () => <Tabs>
+const GuiTabs = ({getUsers, setAssignments, getAssignments}) => <Tabs>
     <TabList aria-label="List of tabs" contained>
       <Tab renderIcon={Search} secondaryLabel="(Task 3)">
         File Upload
       </Tab>
-      <Tab renderIcon={Dashboard} secondaryLabel="(12/16)">
-        Analyze
+      <Tab renderIcon={Dashboard} secondaryLabel="(Task 7)">
+        Content Management System
       </Tab>
       <Tab renderIcon={Activity} secondaryLabel="(0/7)">
         Remediate
@@ -26,19 +28,7 @@ const ContainedWithSecondaryLabelsAndIcons = () => <Tabs>
         <FileUploadForm />
       </TabPanel>
       <TabPanel>
-        {/* <form style={{
-        margin: '2em'
-      }}>
-          <legend className={`cds--label`}>Validation example</legend>
-          <Checkbox id="cb" labelText="Accept privacy policy" />
-          <Button style={{
-          marginTop: '1rem',
-          marginBottom: '1rem'
-        }} type="submit">
-            Submit
-          </Button>
-          <TextInput type="text" labelText="Text input label" helperText="Optional help text" />
-        </form> */}
+        <ContentManagementSystem getUsers={getUsers} setAssignments={setAssignments} getAssignments={getAssignments}/>
       </TabPanel>
       <TabPanel>Tab Panel 3</TabPanel>
       <TabPanel>Tab Panel 4</TabPanel>
@@ -46,4 +36,11 @@ const ContainedWithSecondaryLabelsAndIcons = () => <Tabs>
     </TabPanels>
   </Tabs>;
 
-export default ContainedWithSecondaryLabelsAndIcons;
+
+GuiTabs.propTypes = {
+  getUsers: PropTypes.func.isRequired,
+  setAssignments: PropTypes.func.isRequired,
+  getAssignments: PropTypes.func.isRequired,
+};
+
+export default GuiTabs;

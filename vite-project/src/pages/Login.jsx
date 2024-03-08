@@ -5,18 +5,20 @@ import SignIn from "../assets/SignIn";
 const LoginPage = ({ handleLogin, getUsers, setUsers}) => {
 
     return (
-        <ul style={{listStyleType: 'none', overflow: 'hidden', display: 'flex', justifyContent: 'space-evenly'}}>
-            <li>
-                <div>
-                    <Register handleLogin={handleLogin} getUsers={getUsers} setUsers={setUsers}/>
-                </div>
-            </li>
-            <li>
-                <div>
-                    <SignIn handleLogin={handleLogin} getUsers={getUsers}/>
-                </div>
-            </li>
-        </ul>
+        <div style={{height: '80vh'}}>
+            <ul style={{listStyleType: 'none', overflow: 'hidden', display: 'flex', justifyContent: 'space-evenly'}}>
+                <li>
+                    <div>
+                        <Register handleLogin={handleLogin} getUsers={getUsers} setUsers={setUsers}/>
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <SignIn handleLogin={handleLogin} getUsers={getUsers}/>
+                    </div>
+                </li>
+            </ul>
+        </div>
     );
 };
 

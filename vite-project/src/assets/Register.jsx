@@ -65,14 +65,6 @@ const RegisterForm = ({ handleLogin, getUsers, setUsers }) => {
         <button type="submit">Register User</button>
       </form>
 
-      <h3>Registered Users:</h3>
-      <ul>
-        {getUsers().map((user, index) => (
-          <li key={index}>
-            {user.name} - {user.email} - {user.dob}
-          </li>
-        ))}
-      </ul>
     </div>
   );
 };

@@ -4,7 +4,7 @@ import NotAuthorised from "../assets/NotAuthorised";
 const Home = ({isLoggedIn}) => {
     if (isLoggedIn) {
     return (
-      <div>
+      <div style={{height: '80vh'}}>
         <h1>Welcome to My Epic</h1>
       </div>
       )

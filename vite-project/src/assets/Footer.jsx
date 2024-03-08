@@ -2,7 +2,7 @@ import '../styling/footer.css'
 
 const MyFooter = () => {
     return (
-      <div id='footer' style={{body:'0', position:'absolute', bottom:'-5%'}}>
+      <div id='footer' style={{body:'0'}}>
         <nav style={{backgroundColor:'grey'}}>
           <ul id='parent_list'>
             <li>

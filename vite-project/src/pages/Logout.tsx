@@ -14,7 +14,7 @@ const Logout = ({handleLogout , successToastOpen}) => {
 
 
     return (
-        <div>     
+        <div style={{height: '80vh'}}>     
             <button style={{ backgroundColor: 'grey' }} onClick={handleClick}>
                 Logout
             </button>
