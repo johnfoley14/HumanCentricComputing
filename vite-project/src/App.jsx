@@ -35,6 +35,11 @@ function App() {
     }, 6000);
   };
 
+  const [users, setUsers] = useState([]);
+
+    const getUsers = () => {
+        return users;
+    }
 
   return (
     <div style={{width:'100%', height:'100%'}}>
@@ -50,7 +55,7 @@ function App() {
             )} 
         <Routes>
           <Route index element={<Home isLoggedIn={isLoggedIn}/>} />
-          <Route path="login" element={<Login handleLogin={handleLogin}/>} />
+          <Route path="login" element={<Login handleLogin={handleLogin} getUsers={getUsers} setUsers={setUsers}/>} />
           <Route path="logout" element={<Logout handleLogout={handleLogout}/>} />
           <Route path="project" element={<Submission isLoggedIn={isLoggedIn}/>} />
           <Route path="salim" element={<GuiComponents isLoggedIn={isLoggedIn}/>} />

@@ -1,11 +1,12 @@
 import { Tabs, TabList, Tab, TabPanels, TabPanel } from 'carbon-components-react';
 import { Dashboard, Activity, CloudMonitoring,  Search,  Chat, } from '@carbon/icons-react';
+import FileUploadForm from './Gui/FileUpload';
 import '@carbon/react/scss/components/tabs/_index.scss';
 
 const ContainedWithSecondaryLabelsAndIcons = () => <Tabs>
     <TabList aria-label="List of tabs" contained>
-      <Tab renderIcon={Search} secondaryLabel="(21/25">
-        Engage
+      <Tab renderIcon={Search} secondaryLabel="(Task 3)">
+        File Upload
       </Tab>
       <Tab renderIcon={Dashboard} secondaryLabel="(12/16)">
         Analyze
@@ -21,7 +22,9 @@ const ContainedWithSecondaryLabelsAndIcons = () => <Tabs>
       </Tab>
     </TabList>
     <TabPanels>
-      <TabPanel>Tab Panel 1</TabPanel>
+      <TabPanel>
+        <FileUploadForm />
+      </TabPanel>
       <TabPanel>
         {/* <form style={{
         margin: '2em'
