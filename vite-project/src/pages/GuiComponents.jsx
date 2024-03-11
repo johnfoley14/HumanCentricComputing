@@ -3,7 +3,7 @@ import NotAuthorised from "../assets/NotAuthorised";
 import GuiTabs from "../assets/GuiTabs";
 
 
-const GuiComponents = ({isLoggedIn, getUsers, setAssignments, getAssignments}) => {
+const GuiComponents = ({isLoggedIn, getUsers, setAssignments, getAssignments, currentUser}) => {
 
 
     if (isLoggedIn) {
@@ -13,12 +13,12 @@ const GuiComponents = ({isLoggedIn, getUsers, setAssignments, getAssignments}) =
 
         <p>This is for you Salim</p>
 
-        <GuiTabs getUsers={getUsers} setAssignments={setAssignments} getAssignments={getAssignments}/>
+        <GuiTabs getUsers={getUsers} setAssignments={setAssignments} getAssignments={getAssignments} currentUser={currentUser}/>
         
       </div>
       )
     }
-    return <NotAuthorised />;
+    return <NotAuthorised admin={''}/>;
   };
 
 GuiComponents.propTypes = {
@@ -26,6 +26,7 @@ GuiComponents.propTypes = {
   getUsers: PropTypes.func.isRequired,
   setAssignments: PropTypes.func.isRequired,
   getAssignments: PropTypes.func.isRequired,
+  currentUser: PropTypes.object,
 };
 
 export default GuiComponents;

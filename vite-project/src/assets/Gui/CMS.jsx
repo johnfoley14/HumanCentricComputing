@@ -12,7 +12,7 @@ const ContentManagementSystem = ({getUsers, setAssignments, getAssignments}) => 
       };
 
 
-    const usersHeaders = ['Name', 'Email', 'Dob'];
+    const usersHeaders = ['Name', 'Email', 'Dob', 'Role'];
     const assignmentHeaders = ['Assignment', 'Lecturer', 'Module Title'];
     return (
     <div>

@@ -17,15 +17,21 @@ function App() {
   
   const [successToastOpen, setSuccessToastOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [currentUser, setCurrentUser] = useState({});
 
-  const handleLogin = () => {
+  const handleLogin = (user) => {
     setIsLoggedIn(true);
     showToast();
+    if(user){
+      setCurrentUser(user);
+      console.log('current user is: ', currentUser);
+    }
   };
 
   const handleLogout = () => {
     setIsLoggedIn(false);
     showToast();
+    setCurrentUser(null);
   };
 
   const showToast = () => {
@@ -66,7 +72,12 @@ function App() {
           <Route path="login" element={<Login handleLogin={handleLogin} getUsers={getUsers} setUsers={setUsers}/>} />
           <Route path="logout" element={<Logout handleLogout={handleLogout}/>} />
           <Route path="project" element={<Submission isLoggedIn={isLoggedIn}/>} />
-          <Route path="salim" element={<GuiComponents isLoggedIn={isLoggedIn} getUsers={getUsers} setAssignments={setAssignments} getAssignments={getAssignments}/>} />
+          <Route path="salim" element={<GuiComponents 
+          isLoggedIn={isLoggedIn} 
+          getUsers={getUsers} 
+          setAssignments={setAssignments} 
+          getAssignments={getAssignments} 
+          currrentUser={currentUser}/>} />
         </Routes>
       <Footer />
     </BrowserRouter>

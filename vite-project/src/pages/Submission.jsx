@@ -13,7 +13,7 @@ const Submission = ({isLoggedIn}) => {
         </div>
     );
     }
-    return <NotAuthorised />;
+    return <NotAuthorised admin={''}/>;
 };
 
 Submission.propTypes = {

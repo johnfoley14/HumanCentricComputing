@@ -9,7 +9,7 @@ const Home = ({isLoggedIn}) => {
       </div>
       )
     }
-    return <NotAuthorised />;
+    return <NotAuthorised admin={''}/>;
   };
 
 Home.propTypes = {

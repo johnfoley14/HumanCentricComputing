@@ -1,4 +1,6 @@
-const NotAuthorised = () => {
+import PropTypes from 'prop-types';
+
+const NotAuthorised = ({admin}) => {
   return (
     <div
       style={{
@@ -18,10 +20,14 @@ const NotAuthorised = () => {
         }}
       >
         <h2>Not Authorised</h2>
-        <p>Please log in to access the content.</p>
+        <p>Please log in {admin} to access the content.</p>
       </div>
     </div>
   );
+};
+
+NotAuthorised.propTypes = {
+  admin: PropTypes.string,
 };
 
 export default NotAuthorised;
