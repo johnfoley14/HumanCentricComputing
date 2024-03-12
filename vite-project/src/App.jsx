@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route} from 'react-router-dom';
-import Submission from './pages/Submission';
+import Data from './pages/Data';
 import Header from './assets/Header';
 import Home from './pages/Home';
 import Login from './pages/Login';
@@ -71,7 +71,7 @@ function App() {
           <Route index element={<Home isLoggedIn={isLoggedIn}/>} />
           <Route path="login" element={<Login handleLogin={handleLogin} getUsers={getUsers} setUsers={setUsers}/>} />
           <Route path="logout" element={<Logout handleLogout={handleLogout}/>} />
-          <Route path="project" element={<Submission isLoggedIn={isLoggedIn}/>} />
+          <Route path="data" element={<Data isLoggedIn={isLoggedIn}/>} />
           <Route path="salim" element={<GuiComponents 
           isLoggedIn={isLoggedIn} 
           getUsers={getUsers} 

@@ -1,33 +1,59 @@
 /* eslint-disable no-undef */
 // backend/server.js
+import { publicIp, port } from '../src/config';
 const express = require('express');
 const mqtt = require('mqtt');
+const cors = require('cors');
 
 const app = express();
-const port = 3001; // Choose an available port
 
-const mqttBroker = 'mqtt://54.160.225.31'; // Replace with your MQTT broker address
-const mqttTopic = 'light_sensor_value';
+app.use(cors());
+
+const mqttBroker = 'mqtt://54.221.25.182'; // Replace with your MQTT broker address
+const lightTopic  = "light_sensor_value";
+const soundTopic  = "sound_sensor_value";
+const blindStateTopic  = "blind_state";
 
 const mqttClient = mqtt.connect(mqttBroker);
 
 mqttClient.on('connect', () => {
-    mqttClient.subscribe(mqttTopic);
+    mqttClient.subscribe(lightTopic);
+    mqttClient.subscribe(soundTopic);
+    mqttClient.subscribe(blindStateTopic);
 });
 
-let lastReceivedData = '';
+let lightValue = 'No data available';
+let soundValue = 'No data available';
+let blindValue = 'No data available';
 
 mqttClient.on('message', (topic, message) => {
-  if (topic === mqttTopic) {
-    lastReceivedData = message.toString();
+  if (topic === lightTopic) {
+    lightValue = message.toString();
+    console.log(`Received message on topic ${topic}: ${message.toString()}`);
+    // You can do additional processing here if needed
+  } else if (topic === soundTopic) {
+    soundValue = message.toString();
+    console.log(`Received message on topic ${topic}: ${message.toString()}`);
+    // You can do additional processing here if needed
+  } else if (topic === blindStateTopic) {
+    blindValue = message.toString();
+    console.log(`Received message on topic ${topic}: ${message.toString()}`);
     // You can do additional processing here if needed
   }
 });
 
-app.get('/data', (req, res) => {
-  res.json({ data: lastReceivedData });
+app.get('/light_reading', (req, res) => {
+  res.json({ data: lightValue });
 });
 
-app.listen(port, () => {
-  console.log(`Server listening at http://localhost:${port}`);
+app.get('/sound_reading', (req, res) => {
+  res.json({ data: soundValue });
+});
+
+app.get('/blind_state', (req, res) => {
+  res.json({ data: blindValue });
+});
+
+app.listen(port, '0.0.0.0' , () => {
+  console.log(`Server listening at http://${publicIp}:${port}`);
 });
