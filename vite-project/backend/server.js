@@ -17,7 +17,7 @@ const client = new Client({
 
 user: 'awsuser',
 // Host probably changes everytime I restart the learner lab
-host: 'smart-reels.cvacxyig1fg6.us-east-1.redshift.amazonaws.com:5439/dev',
+host: 'smart-reels.cvacxyig1fg6.us-east-1.redshift.amazonaws.com',
 database: 'dev',
 password: '$V1p__OsfbjGEDk*',
 port: '5439',
@@ -25,18 +25,6 @@ port: '5439',
 });
 
 client.connect();
-
-
-
-// var sqlStatements = ["SELECT * FROM your_table WHERE your_condition"];const params = {	Database: "your_database",	Sqls: sqlStatements};const command = new BatchExecuteStatementCommand(params);
-// try {	
-//     const executeResponse = await client.send(command);
-//     console.lof(executeResponse);
-// }	// Get the results of the SQL statement	const getResultCommand = new GetStatementResultCommand({	Id: executeResponse.Id,	});	const resultResponse = await client.send(getResultCommand);	// Print the results	console.log(resultResponse.Records);} catch (error) {	const { requestId, cfId, extendedRequestId } = error.$$metadata;
-// catch{
-//     console.log('Error: ', error);
-// }
-// console.log({ requestId, cfId, extendedRequestId });
 
 
 const app = express();
@@ -88,11 +76,11 @@ async function insertLightRecords(reading) {
         value: parseInt(reading),
         timestamp: new Date().toISOString(),
     }
-    if (lightRecords.length < 500) {
+    if (lightRecords.length < 50) {
         lightRecords.push(lightRecord);
     }
     else {
-        const insertStatement = createInsertStatement(lightRecords);
+        const insertStatement = createInsertStatement(lightRecords, 'light_sensor_records');
         const values = lightRecords.flatMap(record => [record.value, record.timestamp]);
         try {
             await client.query(insertStatement, values);
@@ -109,11 +97,11 @@ async function insertSoundRecords(reading){
         value: parseInt(reading),
         timestamp: new Date().toISOString(),
     }
-    if (soundRecords.length < 500) {
+    if (soundRecords.length < 50) {
         soundRecords.push(soundRecord);
     }
     else {
-        const insertStatement = createInsertStatement(soundRecords);
+        const insertStatement = createInsertStatement(soundRecords, 'sound_sensor_records');
         const values = soundRecords.flatMap(record => [record.value, record.timestamp]);
         try {
             await client.query(insertStatement, values);
@@ -142,14 +130,14 @@ app.listen(port, '0.0.0.0' , () => {
 });
 
 
-function createInsertStatement(lightRecords) {
+function createInsertStatement(lightRecords, table_name) {
     const valuePlaceholders = lightRecords.map(() => '($1, $2)');
     const joinedPlaceholders = valuePlaceholders.join(', ');
 
     console.log(joinedPlaceholders);
   
     return `
-      INSERT INTO light_data (value, timestamp)
+      INSERT INTO ${table_name} (value, timestamp)
       VALUES ${joinedPlaceholders}
     `;
   }
