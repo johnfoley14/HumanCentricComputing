@@ -81,9 +81,8 @@ async function insertLightRecords(reading) {
     }
     else {
         const insertStatement = createInsertStatement(lightRecords, 'light_sensor_records');
-        const values = lightRecords.flatMap(record => [record.value, record.time]);
         try {
-            await client.query(insertStatement, values);
+            await client.query(insertStatement);
             console.log('Data inserted successfully!');
           } catch (error) {
             console.error('Error inserting data:', error);
@@ -102,9 +101,8 @@ async function insertSoundRecords(reading){
     }
     else {
         const insertStatement = createInsertStatement(soundRecords, 'sound_sensor_records');
-        const values = soundRecords.flatMap(record => [record.value, record.time]);
         try {
-            await client.query(insertStatement, values);
+            await client.query(insertStatement);
             console.log('Data inserted successfully!');
           } catch (error) {
             console.error('Error inserting data:', error);
@@ -131,7 +129,7 @@ app.listen(port, '0.0.0.0' , () => {
 
 
 function createInsertStatement(lightRecords, table_name) {
-    const valuePlaceholders = lightRecords.map(() => '($1, $2)');
+    const valuePlaceholders = lightRecords.map(record => `(${record.value}, '${record.time}')`);
     const joinedPlaceholders = valuePlaceholders.join(', ');
 
     console.log(joinedPlaceholders);
