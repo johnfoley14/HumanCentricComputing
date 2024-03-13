@@ -16,7 +16,6 @@ const redshiftDataApiClient = new RedshiftDataClient({ region: "us-east-1" });
 const client = new Client({
 
 user: 'awsuser',
-// Host probably changes everytime I restart the learner lab
 host: 'smart-reels.cvacxyig1fg6.us-east-1.redshift.amazonaws.com',
 database: 'dev',
 password: '$V1p__OsfbjGEDk*',
@@ -76,14 +75,14 @@ async function insertLightRecords(reading) {
         value: parseInt(reading),
         time: new Date().toISOString(),
     }
-    if (lightRecords.length < 50) {
+    if (lightRecords.length < 250) {
         lightRecords.push(lightRecord);
     }
     else {
         const insertStatement = createInsertStatement(lightRecords, 'light_sensor_records');
         try {
             await client.query(insertStatement);
-            console.log('Data inserted successfully!');
+            console.log(`Successfully inserted ${lightRecords.length} records!`);
           } catch (error) {
             console.error('Error inserting data:', error);
           }
@@ -96,14 +95,14 @@ async function insertSoundRecords(reading){
         value: parseInt(reading),
         time: new Date().toISOString(),
     }
-    if (soundRecords.length < 50) {
+    if (soundRecords.length < 250) {
         soundRecords.push(soundRecord);
     }
     else {
         const insertStatement = createInsertStatement(soundRecords, 'sound_sensor_records');
         try {
             await client.query(insertStatement);
-            console.log('Data inserted successfully!');
+            console.log(`Successfully inserted ${soundRecords.length} records!`);
           } catch (error) {
             console.error('Error inserting data:', error);
           }
@@ -131,8 +130,6 @@ app.listen(port, '0.0.0.0' , () => {
 function createInsertStatement(lightRecords, table_name) {
     const valuePlaceholders = lightRecords.map(record => `(${record.value}, '${record.time}')`);
     const joinedPlaceholders = valuePlaceholders.join(', ');
-
-    console.log(joinedPlaceholders);
   
     return `
       INSERT INTO ${table_name} (value, time)
