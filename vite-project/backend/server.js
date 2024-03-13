@@ -74,14 +74,14 @@ let soundRecords = [];
 async function insertLightRecords(reading) {
     const lightRecord = {
         value: parseInt(reading),
-        timestamp: new Date().toISOString(),
+        time: new Date().toISOString(),
     }
     if (lightRecords.length < 50) {
         lightRecords.push(lightRecord);
     }
     else {
         const insertStatement = createInsertStatement(lightRecords, 'light_sensor_records');
-        const values = lightRecords.flatMap(record => [record.value, record.timestamp]);
+        const values = lightRecords.flatMap(record => [record.value, record.time]);
         try {
             await client.query(insertStatement, values);
             console.log('Data inserted successfully!');
@@ -95,14 +95,14 @@ async function insertLightRecords(reading) {
 async function insertSoundRecords(reading){
     const soundRecord = {
         value: parseInt(reading),
-        timestamp: new Date().toISOString(),
+        time: new Date().toISOString(),
     }
     if (soundRecords.length < 50) {
         soundRecords.push(soundRecord);
     }
     else {
         const insertStatement = createInsertStatement(soundRecords, 'sound_sensor_records');
-        const values = soundRecords.flatMap(record => [record.value, record.timestamp]);
+        const values = soundRecords.flatMap(record => [record.value, record.time]);
         try {
             await client.query(insertStatement, values);
             console.log('Data inserted successfully!');
@@ -137,7 +137,7 @@ function createInsertStatement(lightRecords, table_name) {
     console.log(joinedPlaceholders);
   
     return `
-      INSERT INTO ${table_name} (value, timestamp)
+      INSERT INTO ${table_name} (value, time)
       VALUES ${joinedPlaceholders}
     `;
   }
