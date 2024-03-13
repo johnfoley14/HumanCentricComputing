@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 // backend/server.js
-import { RedshiftDataClient} from "@aws-sdk/client-redshift-data";
-import { publicIp, port } from '../src/config';
+const { RedshiftDataClient } = require("@aws-sdk/client-redshift-data");
+const { publicIp, port } = require('../src/config');
 const express = require('express');
 const mqtt = require('mqtt');
 const cors = require('cors');
@@ -41,7 +41,7 @@ const app = express();
 
 app.use(cors());
 
-const mqttBroker = 'mqtt://54.221.25.182'; // Replace with your MQTT broker address
+const mqttBroker = 'mqtt://54.144.92.52'; // Replace with your MQTT broker address
 const lightTopic  = "light_sensor_value";
 const soundTopic  = "sound_sensor_value";
 const blindStateTopic  = "blind_state";
