@@ -11,7 +11,9 @@
   "license": "ISC",
   "dependencies": {
     "@aws-sdk/client-redshift-data": "^3.529.1",
+    "cors": "^2.8.5",
     "express": "^4.18.3",
-    "mqtt": "^5.3.6"
+    "mqtt": "^5.3.6",
+    "pg": "^8.11.3"
   }
 }

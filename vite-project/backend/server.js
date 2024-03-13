@@ -1,11 +1,13 @@
 /* eslint-disable no-undef */
 // backend/server.js
 const { RedshiftDataClient } = require("@aws-sdk/client-redshift-data");
-const { publicIp, port } = require('../src/config');
 const express = require('express');
 const mqtt = require('mqtt');
 const cors = require('cors');
 const { Client } = require('pg');
+const port = 3000;
+const ip_address= '54.144.92.52';
+
 
 
 // eslint-disable-next-line no-unused-vars
@@ -41,7 +43,7 @@ const app = express();
 
 app.use(cors());
 
-const mqttBroker = 'mqtt://54.144.92.52'; // Replace with your MQTT broker address
+const mqttBroker = `mqtt://${ip_address}`; // Replace with your MQTT broker address
 const lightTopic  = "light_sensor_value";
 const soundTopic  = "sound_sensor_value";
 const blindStateTopic  = "blind_state";
@@ -83,7 +85,7 @@ let soundRecords = [];
 
 async function insertLightRecords(reading) {
     const lightRecord = {
-        value: reading.toInt(),
+        value: parseInt(reading),
         timestamp: new Date().toISOString(),
     }
     if (lightRecords.length < 500) {
@@ -104,7 +106,7 @@ async function insertLightRecords(reading) {
 
 async function insertSoundRecords(reading){
     const soundRecord = {
-        value: reading.toInt(),
+        value: parseInt(reading),
         timestamp: new Date().toISOString(),
     }
     if (soundRecords.length < 500) {
@@ -136,7 +138,7 @@ app.get('/blind_state', (req, res) => {
 });
 
 app.listen(port, '0.0.0.0' , () => {
-  console.log(`Server listening at http://${publicIp}:${port}`);
+  console.log(`Server listening at http://${ip_address}:${port}`);
 });
 
 
