@@ -10,6 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@aws-sdk/client-redshift-data": "^3.529.1",
     "express": "^4.18.3",
     "mqtt": "^5.3.6"
   }

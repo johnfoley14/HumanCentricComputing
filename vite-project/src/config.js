@@ -1,3 +1,3 @@
-export const publicIp = '54.221.25.182';
+export const publicIp = '54.144.92.52';
 
 export const port = 3000;
