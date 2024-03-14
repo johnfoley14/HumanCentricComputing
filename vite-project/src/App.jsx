@@ -56,7 +56,7 @@ function App() {
   }
 
   return (
-    <div style={{position:'relative'}}>
+    <div style={{position:'relative', backgroundColor:'rgb(228, 247, 229)'}}>
     <BrowserRouter>
       <Header isLoggedIn={isLoggedIn}/>
       {successToastOpen && (

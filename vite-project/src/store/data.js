@@ -26,3 +26,7 @@ export const getSoundReading = async () => {
         throw error; // Rethrow the error to handle it in the calling code if needed
     }
     }
+
+export const getBlindState = async () => {
+}
+

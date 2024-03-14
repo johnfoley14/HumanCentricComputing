@@ -1,7 +1,7 @@
 import { Outlet, Link } from 'react-router-dom';
 import '../styling/Header.css';
 import PropTypes from 'prop-types';
-import logo from '../images/SmartReelGreenLogo.jpeg';
+import logo from '../images/SmartReelGreenLogo3.jpg';
 
 
 const Header = ({ isLoggedIn }) => {
