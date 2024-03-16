@@ -14,11 +14,16 @@ const Logout = ({handleLogout , successToastOpen}) => {
 
 
     return (
-        <div style={{height: '80vh'}}>     
-            <button style={{ backgroundColor: 'grey' }} onClick={handleClick}>
-                Logout
+        <div style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: '80vh', // Set the height of the container to 80% of the viewport height
+          }}>
+            <button style={{ backgroundColor: 'rgb(104, 198, 125)' , width:'10%', height:'8%', color:'white', fontSize:'20px'}} onClick={handleClick}>
+              Logout
             </button>
-        </div>
+          </div>
     );
 };
 

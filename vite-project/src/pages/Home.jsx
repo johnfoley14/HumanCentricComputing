@@ -1,11 +1,14 @@
 import '@carbon/react/scss/components/tile/_index.scss';
 import '@carbon/react/scss/components/accordion/_index.scss';	
-
+import '../styling/imageValues.css';
 import { ExpandableTile, TileAboveTheFoldContent, TileBelowTheFoldContent, Content, Button , Accordion, AccordionItem} from '@carbon/react';
 import Insulation from '../images/Insulation.jpeg';
 import Ease from '../images/EaseOfUse.jpeg';
 import Mobility from '../images/Mobility.jpeg';
 import Security from '../images/Security.jpeg';
+import CustSatis from '../images/CustSatis.jpeg';
+import Accessibility from '../images/Accessibility.jpeg';
+import Value from '../images/Value.jpeg';
 
 const Home = () => {
     
@@ -38,7 +41,7 @@ const Home = () => {
         <div style={styles.tileContainer}>
           <ExpandableTile id="expandable-tile-1" tileCollapsedIconText="Interact to Expand tile" tileExpandedIconText="Interact to Collapse tile" style={styles.contentBox}>
             <TileAboveTheFoldContent> 
-              <div style={{ height: '60px', color:'white' }}><h3>Ease of use</h3></div>
+              <div style={{ height: '60px', color:'white', fontSize:'18px', textAlign:'center'}}><h3>Ease of use</h3></div>
             </TileAboveTheFoldContent>
             <TileBelowTheFoldContent>
               <div style={{ height: '20%'}}>
@@ -53,7 +56,7 @@ const Home = () => {
         <div style={styles.tileContainer}>
           <ExpandableTile id="expandable-tile-2" tileCollapsedIconText="Interact to Expand tile" tileExpandedIconText="Interact to Collapse tile" style={styles.contentBox}>
             <TileAboveTheFoldContent> 
-              <div style={{ height: '60px' , color:'white' }}><h3>Security and privacy</h3></div>
+              <div style={{ height: '60px' , color:'white', fontSize:'18px' , textAlign:'center'}}><h3>Security and privacy</h3></div>
             </TileAboveTheFoldContent>
             <TileBelowTheFoldContent>
               <div style={{ height: '20%'}}>
@@ -68,7 +71,7 @@ const Home = () => {
         <div style={styles.tileContainer}>
           <ExpandableTile id="expandable-tile-3" tileCollapsedIconText="Interact to Expand tile" tileExpandedIconText="Interact to Collapse tile" style={styles.contentBox}>
             <TileAboveTheFoldContent> 
-              <div style={{ height: '60px' , color:'white' }}><h3>Mobility issues</h3></div>
+              <div style={{ height: '60px' , color:'white', fontSize:'18px' , textAlign:'center'}}><h3>Mobility issues</h3></div>
             </TileAboveTheFoldContent>
             <TileBelowTheFoldContent>
               <div style={{ height: '20%'}}>
@@ -83,7 +86,7 @@ const Home = () => {
         <div style={styles.tileContainer}>
           <ExpandableTile id="expandable-tile-4" tileCollapsedIconText="Interact to Expand tile" tileExpandedIconText="Interact to Collapse tile" style={styles.contentBox}>
             <TileAboveTheFoldContent> 
-              <div style={{ height: '60px' , color:'white' }}><h3>Insulation</h3></div>
+              <div style={{ height: '60px' , color:'white' , fontSize:'18px', textAlign:'center'}}><h3>Insulation</h3></div>
             </TileAboveTheFoldContent>
             <TileBelowTheFoldContent>
               <div style={{ height: '60%'}}>
@@ -95,7 +98,7 @@ const Home = () => {
           </ExpandableTile>
         </div>
       </div>
-      <div style={{ marginTop: '12%'}}></div> {/* Gap */}
+      <div style={{ marginTop: '12%'}}></div>
         <div style={styles.contentContainer}>
           <div style={styles.quoteContainer}>
           <Content>
@@ -116,9 +119,29 @@ const Home = () => {
           </Content>
           </div>
         </div>
+        <div style={{ marginTop: '4%'}}></div>
+        <div style={{textAlign:'center'}}>
+          <h2>Our Company Values</h2>
+          <br/>
+        </div>
+        <div className="image-row">
+          <div className="image-item" style={{marginLeft:'15%'}}>
+            <img src={CustSatis} alt="Image 1"/>
+            <p style={{fontSize:'18px'}}>Customer Satisfaction</p>
+          </div>
+          <div className="image-item">
+            <img src={Accessibility} alt="Image 2"/>
+            <p style={{fontSize:'18px'}}>Accessibilty</p>
+          </div>
+          <div className="image-item" style={{marginRight:'15%'}}>
+            <img src={Value} alt="Image 3"/>
+            <p style={{fontSize:'18px'}}>Value for money</p>
+          </div>
+        </div>
+        <div style={{ marginTop: '4%'}}></div>
         <h2 style={{fontFamily:'Brandon Grotesque, sans-serif' , textAlign:'center'}}>FAQs</h2>
-        <div style={{marginLeft:'5%', marginRight:'5%'}}>
-          <Accordion style={{backgroundColor:'rgb(104, 198, 125)', transition: 'background-color 0.3s', ':hover': { backgroundColor: 'red' }}}>
+        <div style={{marginLeft:'5%', marginRight:'5%', color:'white'}}>
+          <Accordion style={{backgroundColor:'rgb(104, 198, 125)', color:'white'}}>
             <AccordionItem title="Why would I choose a Smart Reel device over other automated blinds?">
               <p>
                 Our device is designed to be easily installed and used by anyone. Our device 
@@ -128,32 +151,25 @@ const Home = () => {
                 blinds on the market, without the need to pay for installation.
               </p>
             </AccordionItem>
-            <AccordionItem title="Section 2 title">
+            <AccordionItem title="What are some of the advantages of Smart Reels?">
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-                veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                commodo consequat.
+                Smart Reels are completely automatic meaning you don&apos;t even need to
+                click a button on the remote for them to reel up and down. They also offer a 
+                the ability to move your device from blind to blind as you want. 
               </p>
             </AccordionItem>
-            <AccordionItem title="Section 3 title">
+            <AccordionItem title="What type of information does my device send to the webpage?">
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-                veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                commodo consequat.
-              </p>
-            </AccordionItem>
-            <AccordionItem title="Section 4 title">
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-                veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                commodo consequat.
+                This device sends information about the current state of the blinds. This includes
+                 real time data on the sound and light sensor reads. It also states whether or not 
+                 your blind is currently reeled up or down and is in manual mode or not.
               </p>
             </AccordionItem>
           </Accordion>
         </div>
+        <h1>
+          Insert link to youtube video
+        </h1>
       </div>
     );
     
@@ -171,8 +187,6 @@ const Home = () => {
       maxWidth: '33.33%',
     },
     contentBox: {
-      // borderRadius: '5px',
-      // boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)',
       backgroundColor: 'rgb(104, 198, 125)', // Default background color of the tile
       color: 'white',
     },

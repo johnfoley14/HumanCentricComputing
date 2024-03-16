@@ -2,7 +2,7 @@ import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 
-const SignIn = ({ handleLogin, getUsers }) => {
+const SignIn = ({ handleLogin, getUsers}) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
@@ -16,7 +16,7 @@ const SignIn = ({ handleLogin, getUsers }) => {
         if(email && password) {
             const matchedUser = getUsers().find((user) => user.email === email && user.password === password);
             if (matchedUser) {
-                handleLogin();
+                handleLogin(matchedUser);
                 navigate('/');
             } else {
                 setErrorMessage('Invalid email or password');

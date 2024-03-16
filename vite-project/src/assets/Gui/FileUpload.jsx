@@ -1,4 +1,16 @@
 import { useState } from 'react';
+import '@carbon/react/scss/components/file-uploader/_index.scss';
+
+import { Uploader } from "uploader"; // Installed by "react-uploader".
+import { UploadButton } from "react-uploader";
+
+// Initialize once (at the start of your app).
+const uploader = Uploader({
+  apiKey: "free" // Get production API keys from Bytescale
+});
+
+// Configuration options: https://www.bytescale.com/docs/upload-widget/frameworks/react#customize
+const options = { multi: true };
 
 const FileUploadForm = () => {
     
@@ -12,14 +24,6 @@ const FileUploadForm = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
-  };
-
-  const handleFileChange = (e) => {
-    const file = e.target.files[0];
-    setFormData((prevFormData) => ({ ...prevFormData, file }));
-
-    // Clear the file input value
-    e.target.value = '';
   };
 
   const handleSubmit = (e) => {
@@ -38,10 +42,12 @@ const FileUploadForm = () => {
   };
 
   return (
-    <div>
+    <div style={{display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center'}}>
       <form onSubmit={handleSubmit}>
+        <br />
         <label>
           Name:
+          <br/>
           <input
             type="text"
             name="name"
@@ -51,9 +57,10 @@ const FileUploadForm = () => {
           />
         </label>
         <br />
-
+        <br/>
         <label>
           Email:
+          <br/>
           <input
             type="email"
             name="email"
@@ -63,9 +70,11 @@ const FileUploadForm = () => {
           />
         </label>
         <br />
+        <br />
 
         <label>
           File Description:
+          <br/>
           <input
             type="text"
             name="fileDescription"
@@ -75,17 +84,22 @@ const FileUploadForm = () => {
           />
         </label>
         <br />
+        <br />
 
         <label>
           Attach File:
-          <input
-            type="file"
-            name="file"
-            onChange={handleFileChange}
-            accept=".pdf,.doc,.docx,.txt" 
-            required
-          />
-        </label>
+          <br/>
+          <UploadButton uploader={uploader}
+                        options={options}
+                        onComplete={files => alert(files.map(x => x.fileUrl).join("\n"))}>
+            {({onClick}) =>
+              <button onClick={onClick}>
+                Upload a file...
+              </button>
+            }
+          </UploadButton> </label>
+        <br />
+        <br/>
         <br />
 
         <button type="submit">Submit</button>

@@ -1,0 +1,19 @@
+.image-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .image-item {
+    text-align: center;
+  }
+  
+  .image-item img {
+    width: 200px; /* Adjust the image width as needed */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 50%; /* Make the image circular */
+  }
+  
+  .image-item p {
+    margin-top: 10px; /* Adjust spacing between image and title */
+  }

@@ -15,7 +15,7 @@ const ContentManagementSystem = ({getUsers, setAssignments, getAssignments}) => 
     const usersHeaders = ['Name', 'Email', 'Dob', 'Role'];
     const assignmentHeaders = ['Assignment', 'Lecturer', 'Module Title'];
     return (
-    <div>
+    <div >
         <label style={{}}>User Table</label>
         <br></br>
         <br></br>
@@ -95,39 +95,45 @@ const AssignmentForm = ({setAssignments, getAssignments}) => {
     };
   
     return (
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="assignmentName">Assignment Name:</label>
+      <div style={{display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center'}}>
+        <form onSubmit={handleSubmit}>
+          <div>
+            <label htmlFor="assignmentName">Assignment Name:</label>
+            <br/>
+            <input
+              type="text"
+              id="assignmentName"
+              value={assignmentName}
+              onChange={(e) => setAssignmentName(e.target.value)}
+            />
+          </div>
+          <div>
+            <br/>
+            <label htmlFor="lecturer">Lecturer:</label>
+            
           <br></br>
-          <input
-            type="text"
-            id="assignmentName"
-            value={assignmentName}
-            onChange={(e) => setAssignmentName(e.target.value)}
-          />
-        </div>
-        <div>
-          <label htmlFor="lecturer">Lecturer:</label>
-          
-        <br></br>
-          <input
-            type="text"
-            id="lecturer"
-            value={lecturer}
-            onChange={(e) => setLecturer(e.target.value)}
-          />
-        </div>
-        <div>
-          <label htmlFor="moduleTitle">Module Title:</label>
-          <input
-            type="text"
-            id="moduleTitle"
-            value={moduleTitle}
-            onChange={(e) => setModuleTitle(e.target.value)}
-          />
-        </div>
-        <button type="submit">Submit</button>
-      </form>
+            <input
+              type="text"
+              id="lecturer"
+              value={lecturer}
+              onChange={(e) => setLecturer(e.target.value)}
+            />
+          </div>
+          <div>
+            <br/>
+            <label htmlFor="moduleTitle">Module Title:</label>
+            <br/>
+            <input
+              type="text"
+              id="moduleTitle"
+              value={moduleTitle}
+              onChange={(e) => setModuleTitle(e.target.value)}
+            />
+          </div>
+            <br/>
+          <button type="submit">Submit</button>
+        </form>
+      </div>
     );
   };
 

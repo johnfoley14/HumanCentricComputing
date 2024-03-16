@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-const RegisterForm = ({ handleLogin, getUsers, setUsers }) => {
+const RegisterForm = ({ handleLogin, getUsers, setUsers}) => {
     
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');

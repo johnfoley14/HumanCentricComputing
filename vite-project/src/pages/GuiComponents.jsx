@@ -3,7 +3,7 @@ import NotAuthorised from "../assets/NotAuthorised";
 import GuiTabs from "../assets/GuiTabs";
 
 
-const GuiComponents = ({isLoggedIn, getUsers, setAssignments, getAssignments, currentUser}) => {
+const GuiComponents = ({isLoggedIn, getUsers, setAssignments, getAssignments, isAdmin, currentUser, setMessages, getMessages}) => {
 
 
     if (isLoggedIn) {
@@ -12,8 +12,12 @@ const GuiComponents = ({isLoggedIn, getUsers, setAssignments, getAssignments, cu
         <h1>Welcome Salim</h1>
 
         <p>This is for you Salim</p>
-
-        <GuiTabs getUsers={getUsers} setAssignments={setAssignments} getAssignments={getAssignments} currentUser={currentUser}/>
+        <div style={{margin:'5%'}}>
+          <GuiTabs getUsers={getUsers} setAssignments={setAssignments} 
+          getAssignments={getAssignments} isAdmin={isAdmin} 
+          getMessages={getMessages} setMessages={setMessages}
+          currentUser={currentUser}/>
+        </div>
         
       </div>
       )
@@ -26,7 +30,10 @@ GuiComponents.propTypes = {
   getUsers: PropTypes.func.isRequired,
   setAssignments: PropTypes.func.isRequired,
   getAssignments: PropTypes.func.isRequired,
-  currentUser: PropTypes.object,
+  isAdmin: PropTypes.bool.isRequired,
+  currentUser: PropTypes.string.isRequired,
+  setMessages: PropTypes.func.isRequired,
+  getMessages: PropTypes.func.isRequired,
 };
 
 export default GuiComponents;

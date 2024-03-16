@@ -17,21 +17,29 @@ function App() {
   
   const [successToastOpen, setSuccessToastOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [currentUser, setCurrentUser] = useState({});
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [currentUser, setCurrentUser] = useState('');
 
   const handleLogin = (user) => {
+    console.log('user is: ', user);
+    console.log('current user is: ', user.role);
+    if(user.role === 'Admin'){
+      setIsAdmin(true);
+    } else {
+      setIsAdmin(false);
+    }
+    setCurrentUser(user.name);
     setIsLoggedIn(true);
     showToast();
     if(user){
-      setCurrentUser(user);
-      console.log('current user is: ', currentUser);
+      console.log('user is admin: ' + isAdmin);
     }
   };
 
   const handleLogout = () => {
     setIsLoggedIn(false);
     showToast();
-    setCurrentUser(null);
+    setIsAdmin(false);
   };
 
   const showToast = () => {
@@ -53,6 +61,12 @@ function App() {
 
   const getAssignments = () => {
     return assignments;
+  }
+
+  const [messages, setMessages] = useState([]);
+
+  const getMessages = () => {
+    return messages;
   }
 
   return (
@@ -77,7 +91,10 @@ function App() {
           getUsers={getUsers} 
           setAssignments={setAssignments} 
           getAssignments={getAssignments} 
-          currrentUser={currentUser}/>} />
+          isAdmin={isAdmin}
+          currentUser={currentUser}
+          setMessages={setMessages}
+          getMessages={getMessages}/>} />
         </Routes>
       <Footer />
     </BrowserRouter>
