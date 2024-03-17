@@ -55,16 +55,13 @@ mqttClient.on('message', (topic, message) => {
   if (topic === lightTopic) {
     lightValue = message.toString();
     insertLightRecords(lightValue);
-    console.log(`Received message on topic ${topic}: ${message.toString()}`);
     // You can do additional processing here if needed
   } else if (topic === soundTopic) {
     soundValue = message.toString();
     insertSoundRecords(soundValue);
-    console.log(`Received message on topic ${topic}: ${message.toString()}`);
     // You can do additional processing here if needed
   } else if (topic === blindStateTopic) {
     blindValue = message.toString();
-    console.log(`Received message on topic ${topic}: ${message.toString()}`);
     // You can do additional processing here if needed
   }
 });
