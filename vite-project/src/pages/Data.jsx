@@ -9,26 +9,12 @@ import '@carbon/charts/scss/index.scss';
 import { getLightRecords, getSoundRecords } from '../store/data';
 
 
-let newLightRecords = await getLightRecords();
-let newSoundRecords = await getSoundRecords();
+let lightRecords = await getLightRecords();
+let soundRecords = await getSoundRecords();
 
 const Data = ({ isLoggedIn }) => {
   const [light, setLight] = useState(null);
   const [sound, setSound] = useState(null);
-  const [lightRecords, setLightRecords] = useState(newLightRecords);
-  const [soundRecords, setSoundRecords] = useState(newSoundRecords);
-
-  async function refreshLightRecords() {
-    newLightRecords = await getLightRecords();
-    setLightRecords(newLightRecords);
-  
-  }
-
-  async function refreshSoundRecords() {
-    newSoundRecords = await getSoundRecords();
-    setSoundRecords(newSoundRecords);
-  
-  }
 
   isLoggedIn = true;
   useEffect(() => {
@@ -68,14 +54,12 @@ const Data = ({ isLoggedIn }) => {
                   data={lightRecords}
                   options={options}>
                 </LineChart>
-                <button onClick={refreshLightRecords}>Refresh</button>
               </TabPanel>
               <TabPanel>
               <LineChart
                   data={soundRecords}
                   options={options}>
                 </LineChart>
-                <button onClick={refreshSoundRecords}>Refresh</button>
               </TabPanel>
             </TabPanels>
           </Tabs>
