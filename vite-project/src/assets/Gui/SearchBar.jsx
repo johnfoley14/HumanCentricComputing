@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Search } from '@carbon/react';
 import { useNavigate } from 'react-router-dom';
-import '@carbon/react/scss/components/Search/_index.scss';
+import '@carbon/react/scss/components/search/_index.scss';
 
 const SearchBar = () => {
   const navigate = useNavigate();
