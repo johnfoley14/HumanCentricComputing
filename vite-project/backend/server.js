@@ -82,7 +82,7 @@ async function getLightRecords() {
     return results.rows;
 }
 
-async function insertLightRecords(reading) {
+function insertLightRecords(reading) {
     const lightRecord = {
         value: parseInt(reading),
         time: new Date().toISOString(),
@@ -96,7 +96,7 @@ async function insertLightRecords(reading) {
         soundRecords = []
         console.log(insertStatement);
         try {
-            await client.query(insertStatement);
+            client.query(insertStatement);
             console.log(`Successfully inserted ${lightNum} light records!`);
           } catch (error) {
             console.error('Error inserting data:', error);
@@ -104,7 +104,7 @@ async function insertLightRecords(reading) {
     }
 }
 
-async function insertSoundRecords(reading){
+function insertSoundRecords(reading){
     const soundRecord = {
         value: parseInt(reading),
         time: new Date().toISOString(),
@@ -118,7 +118,7 @@ async function insertSoundRecords(reading){
         soundRecords = []
         console.log(insertStatement);
         try {
-            await client.query(insertStatement);
+            client.query(insertStatement);
             console.log(`Successfully inserted ${soundNum} sound records!`);
           } catch (error) {
             console.error('Error inserting data:', error);
