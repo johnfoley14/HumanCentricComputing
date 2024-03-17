@@ -1,22 +1,18 @@
 import { useState, useEffect } from 'react';
 import NotAuthorised from "../assets/NotAuthorised";
 import PropTypes from 'prop-types';
-import { getLightReading, getSoundReading } from "../store/data";
 import { Tabs, TabList, Tab, TabPanels, TabPanel} from "@carbon/react";
 import { LineChart } from "@carbon/charts-react";
 import '@carbon/react/scss/components/tabs/_index.scss';
 import '@carbon/charts/scss/index.scss';
-import { getLightRecords, getSoundRecords } from '../store/data';
-
-
-let lightRecords = await getLightRecords();
-let soundRecords = await getSoundRecords();
+import { getLightReading, getSoundReading, getLightRecords, getSoundRecords } from "../store/data";
 
 const Data = ({ isLoggedIn }) => {
   const [light, setLight] = useState(null);
   const [sound, setSound] = useState(null);
+  const [lightRecords, setLightRecords] = useState([]);
+  const [soundRecords, setSoundRecords] = useState([]);
 
-  isLoggedIn = true;
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -34,6 +30,34 @@ const Data = ({ isLoggedIn }) => {
     fetchData(); // Fetch initial data
     return () => clearInterval(intervalId); // Cleanup interval on component unmount
   }, []); // Empty dependency array means this effect runs once after the initial render
+
+  useEffect(() => {
+    const fetchRecords = async () => {
+      try {
+        const lightRecordsData = await getLightRecords();
+        setLightRecords(lightRecordsData);
+
+        const soundRecordsData = await getSoundRecords();
+        setSoundRecords(soundRecordsData);
+      } catch (error) {
+        console.error('Error fetching records:', error);
+      }
+    };
+
+    fetchRecords(); // Fetch initial records
+  }, []);
+
+  const refreshRecords = async () => {
+    try {
+      const lightRecordsData = await getLightRecords();
+      setLightRecords(lightRecordsData);
+
+      const soundRecordsData = await getSoundRecords();
+      setSoundRecords(soundRecordsData);
+    } catch (error) {
+      console.error('Error fetching records:', error);
+    }
+  };
 
   if (isLoggedIn) {
     return (
@@ -56,13 +80,14 @@ const Data = ({ isLoggedIn }) => {
                 </LineChart>
               </TabPanel>
               <TabPanel>
-              <LineChart
+                <LineChart
                   data={soundRecords}
                   options={options}>
                 </LineChart>
               </TabPanel>
             </TabPanels>
           </Tabs>
+          <button onClick={refreshRecords}>Refresh Records</button>
         </div>
       </div>
     );
@@ -75,24 +100,22 @@ Data.propTypes = {
   isLoggedIn: PropTypes.bool.isRequired,
 };
 
-
-
 const options = {
-"title": "Line (time series)",
-"axes": {
-  "bottom": {
-    "title": "Time",
-    "mapsTo": "time",
-    "scaleType": "time"
+  "title": "Line (time series)",
+  "axes": {
+    "bottom": {
+      "title": "Time",
+      "mapsTo": "time",
+      "scaleType": "time"
+    },
+    "left": {
+      "mapsTo": "value",
+      "title": "Sensor Reading",
+      "scaleType": "linear"
+    }
   },
-  "left": {
-    "mapsTo": "value",
-    "title": "Sensor Reading",
-    "scaleType": "linear"
-  }
-},
-"curve": "curveMonotoneX",
-"height": "400px"
+  "curve": "curveMonotoneX",
+  "height": "400px"
 }
 
 export default Data;
