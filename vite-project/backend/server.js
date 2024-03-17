@@ -94,6 +94,7 @@ async function insertLightRecords(reading) {
         const lightNum = lightRecords.length;
         lightRecords = []
         const insertStatement = createInsertStatement(lightRecords, 'light_sensor_records');
+        console.log(insertStatement);
         try {
             await client.query(insertStatement);
             console.log(`Successfully inserted ${lightNum} light records!`);
@@ -115,6 +116,7 @@ async function insertSoundRecords(reading){
         const soundNum = soundRecords.length;
         soundRecords = []
         const insertStatement = createInsertStatement(soundRecords, 'sound_sensor_records');
+        console.log(insertStatement);
         try {
             await client.query(insertStatement);
             console.log(`Successfully inserted ${soundNum} sound records!`);
