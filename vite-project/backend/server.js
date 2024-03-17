@@ -7,7 +7,6 @@ const cors = require('cors');
 const { Client } = require('pg');
 const port = 3000;
 const ip_address= '44.214.124.65';
-import { createInsertStatement, createRegisterStatement } from './database.js';
 
 
 // eslint-disable-next-line no-unused-vars
@@ -161,5 +160,23 @@ app.post('/register', (req, res) => {
 app.listen(port, '0.0.0.0' , () => {
   console.log(`Server listening at http://${ip_address}:${port}`);
 });
+
+function createRegisterStatement(userData) {
+  return `
+    INSERT INTO users (username, email, password)
+    VALUES ('${userData.username}', '${userData.email}', '${userData.password}')
+  `;
+}
+
+function createInsertStatement(lightRecords, table_name) {
+  const valuePlaceholders = lightRecords.map(record => `(${record.value}, '${record.time}')`);
+  const joinedPlaceholders = valuePlaceholders.join(', ');
+
+  return `
+    INSERT INTO ${table_name} (value, time)
+    VALUES ${joinedPlaceholders}
+  `;
+}
+
 
   
