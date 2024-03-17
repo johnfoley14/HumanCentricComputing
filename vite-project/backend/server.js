@@ -163,14 +163,14 @@ app.listen(port, '0.0.0.0' , () => {
   console.log(`Server listening at http://${ip_address}:${port}`);
 });
 
-async function createRegisterStatement(userData) {
+function createRegisterStatement(userData) {
   return `
     INSERT INTO users (username, email, password)
     VALUES ('${userData.username}', '${userData.email}', '${userData.password}')
   `;
 }
 
-async function createInsertStatement(lightRecords, table_name) {
+function createInsertStatement(lightRecords, table_name) {
   const valuePlaceholders = lightRecords.map(record => `(${record.value}, '${record.time}')`);
   const joinedPlaceholders = valuePlaceholders.join(', ');
 
