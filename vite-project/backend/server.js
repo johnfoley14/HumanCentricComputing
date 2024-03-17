@@ -82,7 +82,7 @@ async function getLightRecords() {
     return results.rows;
 }
 
-function insertLightRecords(reading) {
+async function insertLightRecords(reading) {
     const lightRecord = {
         value: parseInt(reading),
         time: new Date().toISOString(),
@@ -93,10 +93,10 @@ function insertLightRecords(reading) {
     else {
         const lightNum = lightRecords.length;
         const insertStatement = createInsertStatement(lightRecords, 'light_sensor_records');
-        soundRecords = []
+        lightRecords = []
         console.log(insertStatement);
         try {
-            client.query(insertStatement);
+            await client.query(insertStatement);
             console.log(`Successfully inserted ${lightNum} light records!`);
           } catch (error) {
             console.error('Error inserting data:', error);
