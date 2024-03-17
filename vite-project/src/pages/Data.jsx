@@ -69,8 +69,8 @@ Data.propTypes = {
 };
 
 
-let lightRecords = getLightRecords();
-console.log('in data component', lightRecords);
+let lightRecords = await getLightRecords();
+console.log(JSON.stringify(lightRecords));
 const state = {
   data: [
 {

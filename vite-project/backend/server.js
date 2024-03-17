@@ -70,7 +70,7 @@ mqttClient.on('message', (topic, message) => {
 });
 
 async function getLightRecords() {
-    const query = 'SELECT * FROM light_sensor_records ORDER BY time DESC LIMIT 20000;';
+    const query = 'SELECT * FROM light_sensor_records ORDER BY time DESC LIMIT 200;';
     let results;
     try {
       results = await client.query(query);

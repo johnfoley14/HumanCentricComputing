@@ -6,8 +6,6 @@ const backendUrl = `http://${publicIp}:${port}`; // Replace with your actual bac
 export const getLightReading = async () => {
   try {
     const response = await axios.get(`${backendUrl}/light_reading`);
-    console.log(`Light reading: ${response.data}`);
-    console.log(`Lght reading: ${response.data.data}`);
     return response.data.data;
   } catch (error) {
     console.error('Error fetching current light reading:', error);
@@ -18,8 +16,6 @@ export const getLightReading = async () => {
 export const getSoundReading = async () => {
     try {
         const response = await axios.get(`${backendUrl}/sound_reading`);
-        console.log(`Sound reading: ${response.data}`);
-        console.log(`Sound reading: ${response.data.data}`);
         return response.data.data;
     } catch (error) {
         console.error('Error fetching current sound reading:', error);
@@ -41,7 +37,8 @@ export const getBlindState = async () => {
 export const getLightRecords = async () => {
     try {
         const response = await axios.get(`${backendUrl}/light_records`);
-        console.log(`Light records: ${response.data}`);
+        let obj = response.data;
+        console.log(`Light records: `+ JSON.stringify(obj));
         return response.data.data;
     } catch (error) {
         console.error('Error fetching light records:', error);
