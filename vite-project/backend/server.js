@@ -55,23 +55,19 @@ mqttClient.on('message', (topic, message) => {
   if (topic === lightTopic) {
     lightValue = message.toString();
     insertLightRecords(lightValue);
-    // You can do additional processing here if needed
   } else if (topic === soundTopic) {
     soundValue = message.toString();
     insertSoundRecords(soundValue);
-    // You can do additional processing here if needed
   } else if (topic === blindStateTopic) {
     blindValue = message.toString();
-    // You can do additional processing here if needed
   }
 });
 
-async function getLightRecords() {
-    const query = 'SELECT * FROM light_sensor_records ORDER BY time DESC LIMIT 200;';
+async function getRecords(table_name) {
+    const query = `SELECT * FROM ${table_name} ORDER BY time DESC LIMIT 200;`;
     let results;
     try {
       results = await client.query(query);
-      console.log(`Received latest light records!`);
     } catch (error) {
       console.error('Error retrieving light records:', error);
     }
@@ -136,10 +132,22 @@ app.get('/blind_state', (req, res) => {
 
 app.get('/light_records', async (req, res) => {
   try {
-    let lightRecords = await getLightRecords();
+    let lightRecords = await getRecords('light_sensor_records');
+    console.log('Received latest light records!')
     res.json({ data: lightRecords });
   } catch (error) {
     console.error('Error getting light records:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+app.get('/sound_records', async (req, res) => {
+  try {
+    let lightRecords = await getRecords('sound_sensor_records');
+    console.log('Received latest sound records!')
+    res.json({ data: lightRecords });
+  } catch (error) {
+    console.error('Error getting sound records:', error);
     res.status(500).json({ error: 'Internal server error' });
   }
 });

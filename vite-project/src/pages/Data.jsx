@@ -6,19 +6,27 @@ import { Tabs, TabList, Tab, TabPanels, TabPanel} from "@carbon/react";
 import { LineChart } from "@carbon/charts-react";
 import '@carbon/react/scss/components/tabs/_index.scss';
 import '@carbon/charts/scss/index.scss';
-import { getLightRecords } from '../store/data';
+import { getLightRecords, getSoundRecords } from '../store/data';
 
 
 let newLightRecords = await getLightRecords();
+let newSoundRecords = await getSoundRecords();
 
 const Data = ({ isLoggedIn }) => {
   const [light, setLight] = useState(null);
   const [sound, setSound] = useState(null);
   const [lightRecords, setLightRecords] = useState(newLightRecords);
+  const [soundRecords, setSoundRecords] = useState(newSoundRecords);
 
   async function refreshLightRecords() {
     newLightRecords = await getLightRecords();
     setLightRecords(newLightRecords);
+  
+  }
+
+  async function refreshSoundRecords() {
+    newSoundRecords = await getSoundRecords();
+    setSoundRecords(newSoundRecords);
   
   }
 
@@ -58,12 +66,16 @@ const Data = ({ isLoggedIn }) => {
               <TabPanel>
                 <LineChart
                   data={lightRecords}
-                  options={lightOptions}>
+                  options={options}>
                 </LineChart>
                 <button onClick={refreshLightRecords}>Refresh</button>
               </TabPanel>
               <TabPanel>
-                
+              <LineChart
+                  data={soundRecords}
+                  options={options}>
+                </LineChart>
+                <button onClick={refreshSoundRecords}>Refresh</button>
               </TabPanel>
             </TabPanels>
           </Tabs>
@@ -81,7 +93,7 @@ Data.propTypes = {
 
 
 
-const lightOptions = {
+const options = {
 "title": "Line (time series)",
 "axes": {
   "bottom": {
@@ -91,7 +103,7 @@ const lightOptions = {
   },
   "left": {
     "mapsTo": "value",
-    "title": "Light Reading",
+    "title": "Sensor Reading",
     "scaleType": "linear"
   }
 },
