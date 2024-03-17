@@ -7,6 +7,7 @@ const cors = require('cors');
 const { Client } = require('pg');
 const port = 3000;
 const ip_address= '44.214.124.65';
+import { createInsertStatement, createRegisterStatement } from './database.js';
 
 
 // eslint-disable-next-line no-unused-vars
