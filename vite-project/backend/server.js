@@ -137,6 +137,7 @@ app.get('/blind_state', (req, res) => {
 
 app.get('/light_records', (req, res) => {
   let lightRecords = getLightRecords();
+  console.log(`Light records just before: ${lightRecords}`);
   res.json({ data: lightRecords });
 });
 
