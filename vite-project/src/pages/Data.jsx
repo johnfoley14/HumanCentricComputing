@@ -8,9 +8,19 @@ import '@carbon/react/scss/components/tabs/_index.scss';
 import '@carbon/charts/scss/index.scss';
 import { getLightRecords } from '../store/data';
 
+
+let newLightRecords = await getLightRecords();
+
 const Data = ({ isLoggedIn }) => {
   const [light, setLight] = useState(null);
   const [sound, setSound] = useState(null);
+  const [lightRecords, setLightRecords] = useState(newLightRecords);
+
+  async function refreshLightRecords() {
+    newLightRecords = await getLightRecords();
+    setLightRecords(newLightRecords);
+  
+  }
 
   isLoggedIn = true;
   useEffect(() => {
@@ -47,9 +57,10 @@ const Data = ({ isLoggedIn }) => {
             <TabPanels>
               <TabPanel>
                 <LineChart
-                  data={state.data}
-                  options={state.options}>
+                  data={lightRecords}
+                  options={lightOptions}>
                 </LineChart>
+                <button onClick={refreshLightRecords}>Refresh</button>
               </TabPanel>
               <TabPanel>
                 
@@ -69,148 +80,23 @@ Data.propTypes = {
 };
 
 
-let lightRecords = await getLightRecords();
-console.log(JSON.stringify(lightRecords));
-const state = {
-  data: [
-{
-  "group": "Dataset 1",
-  "date": "2019-01-01T00:00:00.000Z",
-  "value": 50000,
-  "surplus": 767570018.4422063
-},
-{
-  "group": "Dataset 1",
-  "date": "2019-01-05T00:00:00.000Z",
-  "value": 65000,
-  "surplus": 386414536.5287671
-},
-{
-  "group": "Dataset 1",
-  "date": "2019-01-08T00:00:00.000Z",
-  "value": null,
-  "surplus": 23261.667227851023
-},
-{
-  "group": "Dataset 1",
-  "date": "2019-01-13T00:00:00.000Z",
-  "value": 49213,
-  "surplus": 152927612.04525757
-},
-{
-  "group": "Dataset 1",
-  "date": "2019-01-17T00:00:00.000Z",
-  "value": 51213,
-  "surplus": 24111033.384511266
-},
-{
-  "group": "Dataset 2",
-  "date": "2019-01-02T00:00:00.000Z",
-  "value": 0,
-  "surplus": 16133.182474915935
-},
-{
-  "group": "Dataset 2",
-  "date": "2019-01-06T00:00:00.000Z",
-  "value": 57312,
-  "surplus": 1385336617.315204
-},
-{
-  "group": "Dataset 2",
-  "date": "2019-01-08T00:00:00.000Z",
-  "value": 27432,
-  "surplus": 34962667.56828345
-},
-{
-  "group": "Dataset 2",
-  "date": "2019-01-15T00:00:00.000Z",
-  "value": 70323,
-  "surplus": 1701279136.5667734
-},
-{
-  "group": "Dataset 2",
-  "date": "2019-01-19T00:00:00.000Z",
-  "value": 21300,
-  "surplus": 460562493.55375874
-},
-{
-  "group": "Dataset 3",
-  "date": "2019-01-01T00:00:00.000Z",
-  "value": 40000,
-  "surplus": 317493496.273485
-},
-{
-  "group": "Dataset 3",
-  "date": "2019-01-05T00:00:00.000Z",
-  "value": null,
-  "surplus": 16581.917250095114
-},
-{
-  "group": "Dataset 3",
-  "date": "2019-01-08T00:00:00.000Z",
-  "value": 18000,
-  "surplus": 217260513.35414466
-},
-{
-  "group": "Dataset 3",
-  "date": "2019-01-13T00:00:00.000Z",
-  "value": 39213,
-  "surplus": 917426685.4520112
-},
-{
-  "group": "Dataset 3",
-  "date": "2019-01-17T00:00:00.000Z",
-  "value": 61213,
-  "surplus": 69887917.16679396
-},
-{
-  "group": "Dataset 4",
-  "date": "2019-01-02T00:00:00.000Z",
-  "value": 20000,
-  "surplus": 302819758.4577358
-},
-{
-  "group": "Dataset 4",
-  "date": "2019-01-06T00:00:00.000Z",
-  "value": 37312,
-  "surplus": 862708684.2458872
-},
-{
-  "group": "Dataset 4",
-  "date": "2019-01-08T00:00:00.000Z",
-  "value": 51432,
-  "surplus": 1258977279.315406
-},
-{
-  "group": "Dataset 4",
-  "date": "2019-01-15T00:00:00.000Z",
-  "value": 25332,
-  "surplus": 288227353.5723978
-},
-{
-  "group": "Dataset 4",
-  "date": "2019-01-19T00:00:00.000Z",
-  "value": null,
-  "surplus": 21317.95087341723
-}
-],
-  options: {
+
+const lightOptions = {
 "title": "Line (time series)",
 "axes": {
   "bottom": {
-    "title": "2019 Annual Sales Figures",
-    "mapsTo": "date",
+    "title": "Time",
+    "mapsTo": "time",
     "scaleType": "time"
   },
   "left": {
     "mapsTo": "value",
-    "title": "Conversion rate",
+    "title": "Light Reading",
     "scaleType": "linear"
   }
 },
 "curve": "curveMonotoneX",
 "height": "400px"
 }
-};
 
 export default Data;

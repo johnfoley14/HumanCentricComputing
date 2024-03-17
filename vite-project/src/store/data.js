@@ -37,8 +37,6 @@ export const getBlindState = async () => {
 export const getLightRecords = async () => {
     try {
         const response = await axios.get(`${backendUrl}/light_records`);
-        let obj = response.data;
-        console.log(`Light records: `+ JSON.stringify(obj));
         return response.data.data;
     } catch (error) {
         console.error('Error fetching light records:', error);

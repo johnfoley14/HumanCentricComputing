@@ -75,7 +75,6 @@ async function getLightRecords() {
     } catch (error) {
       console.error('Error retrieving light records:', error);
     }
-    console.log(results.rows);
     return results.rows;
 }
 
@@ -138,7 +137,6 @@ app.get('/blind_state', (req, res) => {
 app.get('/light_records', async (req, res) => {
   try {
     let lightRecords = await getLightRecords();
-    console.log(`Light records just before: ${lightRecords}`);
     res.json({ data: lightRecords });
   } catch (error) {
     console.error('Error getting light records:', error);
