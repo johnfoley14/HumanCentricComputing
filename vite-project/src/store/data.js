@@ -10,7 +10,7 @@ export const getLightReading = async () => {
     console.log(`Lght reading: ${response.data.data}`);
     return response.data.data;
   } catch (error) {
-    console.error('Error fetching light reading:', error);
+    console.error('Error fetching current light reading:', error);
     throw error; // Rethrow the error to handle it in the calling code if needed
   }
 };
@@ -22,11 +22,30 @@ export const getSoundReading = async () => {
         console.log(`Sound reading: ${response.data.data}`);
         return response.data.data;
     } catch (error) {
-        console.error('Error fetching sound reading:', error);
+        console.error('Error fetching current sound reading:', error);
         throw error; // Rethrow the error to handle it in the calling code if needed
     }
     }
 
 export const getBlindState = async () => {
+    try {
+        const response = await axios.get(`${backendUrl}/blind_state`);
+        console.log(`Blind state: ${response.data}`);
+        return response.data.data;
+    } catch (error) {
+        console.error('Error fetching blind state:', error);
+        throw error; // Rethrow the error to handle it in the calling code if needed
+    }
+}
+
+export const getLightRecords = async () => {
+    try {
+        const response = await axios.get(`${backendUrl}/light_records`);
+        console.log(`Light records: ${response.data}`);
+        return response.data.data;
+    } catch (error) {
+        console.error('Error fetching light records:', error);
+        throw error; // Rethrow the error to handle it in the calling code if needed
+    }
 }
 

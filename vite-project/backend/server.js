@@ -6,7 +6,7 @@ const mqtt = require('mqtt');
 const cors = require('cors');
 const { Client } = require('pg');
 const port = 3000;
-const ip_address= '54.144.92.52';
+const ip_address= '44.214.124.65';
 
 
 // eslint-disable-next-line no-unused-vars
@@ -69,6 +69,19 @@ mqttClient.on('message', (topic, message) => {
   }
 });
 
+async function getLightRecords() {
+    const query = 'SELECT * FROM light_sensor_records ORDER BY time DESC LIMIT 20000;';
+    let results;
+    try {
+      results = await client.query(query);
+      console.log(`Received latest light records!`);
+    } catch (error) {
+      console.error('Error retrieving light records:', error);
+    }
+    console.log(results.rows);
+    return results.rows;
+}
+
 async function insertLightRecords(reading) {
     const lightRecord = {
         value: parseInt(reading),
@@ -121,6 +134,11 @@ app.get('/sound_reading', (req, res) => {
 
 app.get('/blind_state', (req, res) => {
   res.json({ data: blindValue });
+});
+
+app.get('/light_records', (req, res) => {
+  let lightRecords = getLightRecords();
+  res.json({ data: lightRecords });
 });
 
 app.post('/register', (req, res) => {
