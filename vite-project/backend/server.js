@@ -135,11 +135,17 @@ app.get('/blind_state', (req, res) => {
   res.json({ data: blindValue });
 });
 
-app.get('/light_records', (req, res) => {
-  let lightRecords = getLightRecords();
-  console.log(`Light records just before: ${lightRecords}`);
-  res.json({ data: lightRecords });
+app.get('/light_records', async (req, res) => {
+  try {
+    let lightRecords = await getLightRecords();
+    console.log(`Light records just before: ${lightRecords}`);
+    res.json({ data: lightRecords });
+  } catch (error) {
+    console.error('Error getting light records:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
 });
+
 
 app.post('/register', (req, res) => {
     const userData = req.body; 
