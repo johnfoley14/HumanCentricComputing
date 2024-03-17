@@ -66,11 +66,11 @@ mqttClient.on('message', (topic, message) => {
   }
 });
 
-function getLightRecords() {
+async function getLightRecords() {
     const query = 'SELECT * FROM light_sensor_records ORDER BY time DESC LIMIT 200;';
     let results;
     try {
-      results = client.query(query);
+      results = await client.query(query);
       console.log(`Received latest light records!`);
     } catch (error) {
       console.error('Error retrieving light records:', error);
