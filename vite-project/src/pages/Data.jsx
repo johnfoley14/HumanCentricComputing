@@ -7,7 +7,7 @@ import '@carbon/react/scss/components/tabs/_index.scss';
 import '@carbon/react/scss/components/contained-list/_index.scss';
 import '@carbon/charts/scss/index.scss';
 import Footer from '../assets/Footer';
-import { getLightReading, getSoundReading, getLightRecords, getSoundRecords, getBlindState, getManualMode } from "../store/data";
+import { getLightReading, getSoundReading, getLightRecords, getSoundRecords, getBlindState, getManualMode} from "../store/data";
 
 const Data = ({ isLoggedIn }) => {
   const [light, setLight] = useState(null);
@@ -79,7 +79,7 @@ const Data = ({ isLoggedIn }) => {
           <ContainedListItem>Light reading: {light}</ContainedListItem>
           <ContainedListItem>Sound reading: {sound}</ContainedListItem>
           <ContainedListItem>Blind state: {blindState ? "Up" : "Down"}</ContainedListItem>
-          <ContainedListItem>Manual mode: {manualMode ? "True": "False"}</ContainedListItem>
+          <ContainedListItem>Manual mode: {manualMode ? "True" : "Down"}</ContainedListItem>
         </ContainedList>
         </div>
         <div style={{backgroundColor:'white', margin:'3%', borderRadius:'20px', border:'2px solid rgb(104, 198, 125)'}}>

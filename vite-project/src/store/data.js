@@ -27,18 +27,16 @@ export const getBlindState = async () => {
     try {
         const response = await axios.get(`${backendUrl}/blind_state`);
         const responseString = JSON.stringify(response.data.data);
-        const parts = responseString.split(' ');
 
-        let blindStateValue = null;
-        for (let i = 0; i < parts.length; i++) {
-            if (parts[i] === 'blind' && parts[i + 1] === 'state:') {
-                blindStateValue = parseInt(parts[i + 2]); 
-                break;
-            }
+        const containsUp = responseString.toLowerCase().includes('up');
+        const containsDown = responseString.toLowerCase().includes('down');
+        if(containsUp){
+            return containsUp;
+        } else if (containsDown){
+            return false;
         }
-        return blindStateValue;
     } catch (error) {
-        console.error('Error fetching blind state:', error);
+        console.error('Error fetching manual mode:', error);
         throw error; 
     }
 }
