@@ -9,11 +9,12 @@ import Security from '../images/Security.jpeg';
 import CustSatis from '../images/CustSatis.jpeg';
 import Accessibility from '../images/Accessibility.jpeg';
 import Value from '../images/Value.jpeg';
+import Footer from '../assets/Footer'; 
 
 const Home = () => {
     
     return (
-      <div style={{height: '260vh'}}>
+      <div style={{backgroundColor:'rgb(236, 255, 230)'}}>
         <ul style={{listStyleType: 'none', overflow: 'hidden', display: 'flex', justifyContent: 'space-evenly'}}>
           <li>
             <br></br>
@@ -143,7 +144,7 @@ const Home = () => {
         <div style={{marginLeft:'5%', marginRight:'5%', color:'white'}}>
           <Accordion style={{backgroundColor:'rgb(104, 198, 125)', color:'white'}}>
             <AccordionItem title="Why would I choose a Smart Reel device over other automated blinds?">
-              <p>
+              <p style={{fontSize:'20px'}}>
                 Our device is designed to be easily installed and used by anyone. Our device 
                 can also be easily moved from window to window as the user wishes. Plus,
                 there is no need to buy a new set of blinds, our device can be easily attached 
@@ -152,14 +153,14 @@ const Home = () => {
               </p>
             </AccordionItem>
             <AccordionItem title="What are some of the advantages of Smart Reels?">
-              <p>
+              <p style={{fontSize:'20px'}}>
                 Smart Reels are completely automatic meaning you don&apos;t even need to
                 click a button on the remote for them to reel up and down. They also offer a 
                 the ability to move your device from blind to blind as you want. 
               </p>
             </AccordionItem>
             <AccordionItem title="What type of information does my device send to the webpage?">
-              <p>
+              <p style={{fontSize:'20px'}}>
                 This device sends information about the current state of the blinds. This includes
                  real time data on the sound and light sensor reads. It also states whether or not 
                  your blind is currently reeled up or down and is in manual mode or not.
@@ -170,10 +171,12 @@ const Home = () => {
         <h1>
           Insert link to youtube video
         </h1>
+      <Footer />
       </div>
     );
     
   };
+
 
   const styles = {
     container: {

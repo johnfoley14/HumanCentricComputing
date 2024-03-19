@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import NotAuthorised from "../assets/NotAuthorised";
 import GuiTabs from "../assets/GuiTabs";
+import Footer from '../assets/Footer'; 
 
 
 const GuiComponents = ({isLoggedIn, getUsers, setAssignments, getAssignments, isAdmin, currentUser, setMessages, getMessages}) => {
@@ -8,7 +9,7 @@ const GuiComponents = ({isLoggedIn, getUsers, setAssignments, getAssignments, is
 
     if (isLoggedIn) {
     return (
-      <div style={{height: '160vh'}}>
+      <div style={{backgroundColor:'rgb(236, 255, 230)'}}>
         <h1 style={{textAlign:'center'}}>Welcome Salim</h1>
 
         <p style={{margin:'5%'}}>This page contains all the GUI components as part of your submission. Some key things to note is that 
@@ -22,6 +23,7 @@ const GuiComponents = ({isLoggedIn, getUsers, setAssignments, getAssignments, is
           getMessages={getMessages} setMessages={setMessages}
           currentUser={currentUser}/>
         </div>
+        <Footer />
         
       </div>
       )

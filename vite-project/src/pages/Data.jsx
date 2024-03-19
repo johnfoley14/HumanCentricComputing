@@ -6,7 +6,8 @@ import { LineChart } from "@carbon/charts-react";
 import '@carbon/react/scss/components/tabs/_index.scss';
 import '@carbon/react/scss/components/contained-list/_index.scss';
 import '@carbon/charts/scss/index.scss';
-import { getLightReading, getSoundReading, getLightRecords, getSoundRecords } from "../store/data";
+import Footer from '../assets/Footer';
+import { getLightReading, getSoundReading, getLightRecords, getSoundRecords, getBlindState, getManualMode } from "../store/data";
 
 const Data = ({ isLoggedIn }) => {
   const [light, setLight] = useState(null);
@@ -25,10 +26,10 @@ const Data = ({ isLoggedIn }) => {
         const soundData = await getSoundReading();
         setSound(soundData);
 
-        const blindStateData = await fetch('/api/blind-state');
+        const blindStateData = await getBlindState();
         setBlindState(blindStateData);
 
-        const manualModeData = await fetch('/api/manual-mode');
+        const manualModeData = await getManualMode();
         setManualMode(manualModeData);
     
       } catch (error) {
@@ -71,14 +72,14 @@ const Data = ({ isLoggedIn }) => {
 
   if (isLoggedIn) {
     return (
-      <div style={{ height: '180vh' }}>
+      <div style={{backgroundColor:'rgb(236, 255, 230)'}}>
         <h1 style={{textAlign:'center'}}>Smart Reels Data</h1>
         <div style={{margin:'3%', backgroundColor:'white', border:'2px solid rgb(104, 198, 125)', textAlign:'center'}}>
         <ContainedList label="Real time system status" kind="on-page">
           <ContainedListItem>Light reading: {light}</ContainedListItem>
           <ContainedListItem>Sound reading: {sound}</ContainedListItem>
           <ContainedListItem>Blind state: {blindState ? "Up" : "Down"}</ContainedListItem>
-          <ContainedListItem>Manual mode: {manualMode}</ContainedListItem>
+          <ContainedListItem>Manual mode: {manualMode ? "True": "False"}</ContainedListItem>
         </ContainedList>
         </div>
         <div style={{backgroundColor:'white', margin:'3%', borderRadius:'20px', border:'2px solid rgb(104, 198, 125)'}}>
@@ -104,6 +105,8 @@ const Data = ({ isLoggedIn }) => {
           </Tabs>
           <button style={{marginLeft:'2%'}}onClick={refreshRecords}>Refresh Records</button>
         </div>
+        <div style={{marginTop:'7%'}}/>
+        <Footer />
       </div>
     );
   }

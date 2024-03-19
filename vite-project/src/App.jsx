@@ -7,7 +7,6 @@ import Logout from './pages/Logout';
 import GuiComponents from './pages/GuiComponents';
 import { useState } from 'react';
 import { ToastNotification } from '@carbon/react';
-import Footer from './assets/Footer'; 
 // // eslint-disable-next-line no-unused-vars
 import './styling/toastNotification.css'
 import '@carbon/react/scss/components/notification/_index.scss';
@@ -96,7 +95,6 @@ function App() {
           setMessages={setMessages}
           getMessages={getMessages}/>} />
         </Routes>
-      <Footer />
     </BrowserRouter>
     </div>
   );
