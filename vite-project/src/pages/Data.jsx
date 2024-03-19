@@ -1,15 +1,18 @@
 import { useState, useEffect } from 'react';
 import NotAuthorised from "../assets/NotAuthorised";
 import PropTypes from 'prop-types';
-import { Tabs, TabList, Tab, TabPanels, TabPanel} from "@carbon/react";
+import { Tabs, TabList, Tab, TabPanels, TabPanel, ContainedList, ContainedListItem} from "@carbon/react";
 import { LineChart } from "@carbon/charts-react";
 import '@carbon/react/scss/components/tabs/_index.scss';
+import '@carbon/react/scss/components/contained-list/_index.scss';
 import '@carbon/charts/scss/index.scss';
 import { getLightReading, getSoundReading, getLightRecords, getSoundRecords } from "../store/data";
 
 const Data = ({ isLoggedIn }) => {
   const [light, setLight] = useState(null);
   const [sound, setSound] = useState(null);
+  const [blindState, setBlindState] = useState(null);
+  const [manualMode, setManualMode] = useState(null);
   const [lightRecords, setLightRecords] = useState([]);
   const [soundRecords, setSoundRecords] = useState([]);
 
@@ -21,6 +24,13 @@ const Data = ({ isLoggedIn }) => {
 
         const soundData = await getSoundReading();
         setSound(soundData);
+
+        const blindStateData = await fetch('/api/blind-state');
+        setBlindState(blindStateData);
+
+        const manualModeData = await fetch('/api/manual-mode');
+        setManualMode(manualModeData);
+    
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -62,10 +72,15 @@ const Data = ({ isLoggedIn }) => {
   if (isLoggedIn) {
     return (
       <div style={{ height: '180vh' }}>
-        <h1>Project Data</h1>
-        <p>
-          Thank you for considering; Light Reading: {light} Sound Reading: {sound}
-        </p>
+        <h1 style={{textAlign:'center'}}>Smart Reels Data</h1>
+        <div style={{margin:'3%', backgroundColor:'white', border:'2px solid rgb(104, 198, 125)', textAlign:'center'}}>
+        <ContainedList label="Real time system status" kind="on-page">
+          <ContainedListItem>Light reading: {light}</ContainedListItem>
+          <ContainedListItem>Sound reading: {sound}</ContainedListItem>
+          <ContainedListItem>Blind state: {blindState ? "Up" : "Down"}</ContainedListItem>
+          <ContainedListItem>Manual mode: {manualMode}</ContainedListItem>
+        </ContainedList>
+        </div>
         <div style={{backgroundColor:'white', margin:'3%', borderRadius:'20px', border:'2px solid rgb(104, 198, 125)'}}>
           <Tabs>
             <TabList aria-label="List of tabs">
@@ -87,7 +102,7 @@ const Data = ({ isLoggedIn }) => {
               </TabPanel>
             </TabPanels>
           </Tabs>
-          <button onClick={refreshRecords}>Refresh Records</button>
+          <button style={{marginLeft:'2%'}}onClick={refreshRecords}>Refresh Records</button>
         </div>
       </div>
     );

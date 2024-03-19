@@ -10,7 +10,6 @@ const FeedbackForm = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        // Here you can add your logic to handle form submission
         // For now, let's just show the toast notification and clear the input fields
         setShowToast(true);
         setWebsiteFeedback("");
@@ -19,7 +18,7 @@ const FeedbackForm = () => {
     };
 
     return (
-        <div style={{ position: 'relative', display: 'flex', justifyContent: 'center', alignItems: 'center', height: '80vh' }}>
+        <div style={{ position: 'relative', display: 'flex', justifyContent: 'center', alignItems: 'center', height: '80vh', marginBottom:'3%' }}>
             <form style={{ width: '400px' }} onSubmit={handleSubmit}>
                 <h2>Feedback Category</h2>
                 <select style={{ width: '100%', marginBottom: '10px' }} value={feedbackCategory} onChange={(e) => setFeedbackCategory(e.target.value)}>
