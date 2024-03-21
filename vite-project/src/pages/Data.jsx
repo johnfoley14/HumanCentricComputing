@@ -79,7 +79,7 @@ const Data = ({ isLoggedIn }) => {
           <ContainedListItem>Light reading: {light}</ContainedListItem>
           <ContainedListItem>Sound reading: {sound}</ContainedListItem>
           <ContainedListItem>Blind state: {blindState ? "Up" : "Down"}</ContainedListItem>
-          <ContainedListItem>Manual mode: {manualMode ? "True" : "Down"}</ContainedListItem>
+          <ContainedListItem>Manual mode: {manualMode ? "True" : "False"}</ContainedListItem>
         </ContainedList>
         </div>
         <div style={{backgroundColor:'white', margin:'3%', borderRadius:'20px', border:'2px solid rgb(104, 198, 125)'}}>

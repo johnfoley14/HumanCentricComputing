@@ -10,32 +10,29 @@ import CustSatis from '../images/CustSatis.jpeg';
 import Accessibility from '../images/Accessibility.jpeg';
 import Value from '../images/Value.jpeg';
 import Footer from '../assets/Footer'; 
+import Device from '../images/IMG_1049.jpeg';
 
 const Home = () => {
     
     return (
       <div style={{backgroundColor:'rgb(236, 255, 230)'}}>
-        <ul style={{listStyleType: 'none', overflow: 'hidden', display: 'flex', justifyContent: 'space-evenly'}}>
-          <li>
-            <br></br>
-            <br></br>
-            <h1 style={{fontFamily:'Brandon Grotesque, sans-serif'}}>The all-in-one Smart Blind<br></br> you never knew you needed </h1>
-            <p style={{fontFamily: 'Brandon Grotesque, sans-serif'}}>The only modular solution that provides automation for blinds at<br></br> a customer friendly cost. 
-              Our product is designed to be <br></br>easily installed and used by anyone.  
-              We provide multiple options<br></br> for controlling the blinds, including clap control and light control. 
+        <ul style={{ listStyleType: 'none', overflow: 'hidden', display: 'flex', justifyContent: 'space-between', padding: '20px' }}>
+          <li style={{ flex: '1', marginRight: '5%', marginLeft: '9%' }}>
+            <h1 style={{ fontFamily: 'Brandon Grotesque, sans-serif' }}>The all-in-one Smart Blind<br /> you never knew you needed </h1>
+            <p style={{ fontFamily: 'Brandon Grotesque, sans-serif' }}>The only modular solution that provides automation for blinds at<br /> a customer-friendly cost.
+            Our product is designed to be<br />easily installed and used by anyone.
+            We provide multiple options<br /> for controlling the blinds, including clap control and light control.
             </p>
+            <div style={{marginTop:'15%'}}>
+              <Button kind="tertiary" style={{color:'white', marginLeft:'9%', borderRadius:'20px', backgroundColor:'rgb(104, 198, 125)' , borderBlockColor:'rgb(104, 198, 125)', border: '2px solid #00b140'}}>Learn more</Button>
+              <Button kind="tertiary" style={{color:'white', marginLeft:'6%', borderRadius:'20px', backgroundColor:'rgb(104, 198, 125)' , borderBlockColor:'rgb(104, 198, 125)', border: '2px solid #00b140'}}>Buy now</Button>
+            </div>
           </li>
-          <li/>
-          <li/>
-          <li>
-            <h1>Insert Image of final product</h1>
+          <li style={{ flex: '1' }}>
+            <img src={Device} alt="Your Image" style={{ width: '40%', height: 'auto', marginLeft:'20%'}} />
           </li>
         </ul>
-      <div style={{ marginTop: '3%'}}></div>
-      <div>
-        <Button kind="tertiary" style={{color:'white', marginLeft:'9%', borderRadius:'20px', backgroundColor:'rgb(104, 198, 125)' , borderBlockColor:'rgb(104, 198, 125)', border: '2px solid #00b140'}}>Learn more</Button>
-        <Button kind="tertiary" style={{color:'white', marginLeft:'6%', borderRadius:'20px', backgroundColor:'rgb(104, 198, 125)' , borderBlockColor:'rgb(104, 198, 125)', border: '2px solid #00b140'}}>Buy now</Button>
-      </div>
+
       <div style={{ marginTop: '10%'}}></div>
         <h2 style={{fontFamily:'Brandon Grotesque, sans-serif' , textAlign:'center'}}>Why are people choosing Smart Reels?</h2>
       <div style={styles.container}>
@@ -168,9 +165,9 @@ const Home = () => {
             </AccordionItem>
           </Accordion>
         </div>
-        <h1>
-          Insert link to youtube video
-        </h1>
+        <div style={{margin:'15%'}}>
+        <iframe width="840" height="472" src="https://www.youtube.com/embed/sxueMBQOE04?si=cNv5Uk5MWmz_AghK" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
       <Footer />
       </div>
     );
